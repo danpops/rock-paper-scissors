@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const GameMove = () => {
+const PlayerMove = () => {
   const { userPlay, compPlay } = useAppSelector((state) => state.game)
   return (
     <View style={styles.row}>
@@ -33,4 +33,4 @@ const GameMove = () => {
   )
 }
 
-export default GameMove
+export default PlayerMove

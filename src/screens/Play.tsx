@@ -1,5 +1,5 @@
 import React from 'react'
-import GameMove from '../components/GameMove'
+import PlayerMove from '../components/PlayerMove'
 import GameOptions from '../components/GameOptions'
 import { PlayContainer } from '../components/Layout'
 import ScoreBoard from '../components/ScoreBoard'
@@ -13,7 +13,7 @@ const Play = () => {
   return (
     <PlayContainer>
       <ScoreBoard />
-      <GameMove />
+      <PlayerMove />
       <Heading2>{gameResult}</Heading2>
       <SelectMove />
       <GameOptions />
