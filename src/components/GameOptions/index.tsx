@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Button } from 'react-native'
+import { Button } from 'react-native'
 import useRockPaperScissors from '../../hooks/useRockPaperScissors'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { resetGame } from '../../store/slices/game.reducer'
+import { GameOptionContainer } from './styles'
 
 const GameOptions = () => {
   const dispatch = useAppDispatch()
@@ -14,10 +15,10 @@ const GameOptions = () => {
   const onPressReset = () => dispatch(resetGame())
 
   return (
-    <View style={{ marginVertical: 50 }}>
+    <GameOptionContainer>
       {isReset && <Button title="Reset" onPress={onPressReset} />}
       {showChallenge && <Button title="Challenge" onPress={onChallenge} />}
-    </View>
+    </GameOptionContainer>
   )
 }
 

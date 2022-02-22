@@ -19,3 +19,12 @@ export const MenuContainer = styled.View`
 export const Section = styled.View`
   padding: 30px 24px;
 `
+
+export const Row = styled.View`
+  flex-direction: row;
+`
+export const Column = styled.View`
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+`

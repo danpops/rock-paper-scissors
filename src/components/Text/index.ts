@@ -18,6 +18,7 @@ export const Heading3 = styled.Text`
   font-weight: 300;
   margin-top: 26px;
   color: #bae8e8;
+  margin-bottom: 15px;
 `
 
 export const Heading4 = styled.Text`

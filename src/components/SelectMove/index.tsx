@@ -1,26 +1,9 @@
 import React from 'react'
-import { StyleSheet, View, Text, Pressable } from 'react-native'
+import { Pressable } from 'react-native'
 import { useAppDispatch } from '../../store/hooks'
 import { playNewGame } from '../../store/slices/game.reducer'
 import { Heading3 } from '../Text'
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  row: {
-    flexDirection: 'row',
-    marginTop: 35,
-  },
-  font: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    color: 'white',
-    marginHorizontal: 30,
-  },
-})
+import { SelectMoveContainer, SelectMoveRow, SelectMoveText } from './styles'
 
 const SelectMove = () => {
   const dispatch = useAppDispatch()
@@ -30,20 +13,20 @@ const SelectMove = () => {
   const onSelectScissors = () => dispatch(playNewGame('S'))
 
   return (
-    <View style={styles.container}>
+    <SelectMoveContainer>
       <Heading3>Choose your move</Heading3>
-      <View style={styles.row}>
+      <SelectMoveRow>
         <Pressable onPress={onSelectRock}>
-          <Text style={styles.font}>R</Text>
+          <SelectMoveText>R</SelectMoveText>
         </Pressable>
         <Pressable onPress={onSelectPaper}>
-          <Text style={styles.font}>P</Text>
+          <SelectMoveText>P</SelectMoveText>
         </Pressable>
         <Pressable onPress={onSelectScissors}>
-          <Text style={styles.font}>S</Text>
+          <SelectMoveText>S</SelectMoveText>
         </Pressable>
-      </View>
-    </View>
+      </SelectMoveRow>
+    </SelectMoveContainer>
   )
 }
 
