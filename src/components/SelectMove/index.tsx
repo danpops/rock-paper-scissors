@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, Pressable } from 'react-native'
 import { useAppDispatch } from '../../store/hooks'
-import { playNewGame } from '../../store/slices/gameSlice'
+import { playNewGame } from '../../store/slices/game.reducer'
 import { Heading3 } from '../Text'
 
 const styles = StyleSheet.create({

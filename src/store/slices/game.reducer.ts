@@ -5,19 +5,17 @@ type ScoreType = {
   comp: number
 }
 
-type GameStateType = {
+export type GameState = {
   userPlay: string
   compPlay: string
-  winner: string | undefined
   gameResult: string
   isReset: boolean
   score: ScoreType
 }
 
-const initialState: GameStateType = {
+export const INITIAL_GAME_STATE: GameState = {
   userPlay: '?',
   compPlay: '?',
-  winner: undefined,
   gameResult: '',
   isReset: false,
   score: {
@@ -28,7 +26,7 @@ const initialState: GameStateType = {
 
 const gameSlice = createSlice({
   name: 'game',
-  initialState,
+  initialState: INITIAL_GAME_STATE,
   reducers: {
     setCompPlay: (state, action: PayloadAction<string>) => {
       state.compPlay = action.payload
@@ -36,7 +34,6 @@ const gameSlice = createSlice({
     resetGame: (state) => {
       state.userPlay = '?'
       state.compPlay = '?'
-      state.winner = undefined
       state.gameResult = ''
       state.isReset = false
       state.score = {

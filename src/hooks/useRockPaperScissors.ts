@@ -8,7 +8,7 @@ import {
   userWins,
   compWins,
   draw,
-} from '../store/slices/gameSlice'
+} from '../store/slices/game.reducer'
 
 const useRockPaperScissors = () => {
   const dispatch = useAppDispatch()

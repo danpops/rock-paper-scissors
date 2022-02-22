@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Button } from 'react-native'
 import useRockPaperScissors from '../../hooks/useRockPaperScissors'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { resetGame } from '../../store/slices/gameSlice'
+import { resetGame } from '../../store/slices/game.reducer'
 
 const GameOptions = () => {
   const dispatch = useAppDispatch()
