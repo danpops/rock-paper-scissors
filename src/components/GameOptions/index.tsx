@@ -6,15 +6,17 @@ import { resetGame } from '../../store/slices/gameSlice'
 
 const GameOptions = () => {
   const dispatch = useAppDispatch()
-  const { isReset, userPlay } = useAppSelector((state) => state.game)
+  const { isReset, userPlay, compPlay } = useAppSelector((state) => state.game)
   const { onChallenge } = useRockPaperScissors()
+
+  const showChallenge = userPlay !== '?' && compPlay === '?'
 
   const onPressReset = () => dispatch(resetGame())
 
   return (
     <View style={{ marginVertical: 50 }}>
       {isReset && <Button title="Reset" onPress={onPressReset} />}
-      {userPlay !== '?' && <Button title="Challenge" onPress={onChallenge} />}
+      {showChallenge && <Button title="Challenge" onPress={onChallenge} />}
     </View>
   )
 }
