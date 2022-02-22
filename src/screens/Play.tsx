@@ -8,12 +8,12 @@ import { Heading2 } from '../components/Text'
 import { useAppSelector } from '../store/hooks'
 
 const Play = () => {
-  const { gameWinner } = useAppSelector((state) => state.game)
+  const { gameResult } = useAppSelector((state) => state.game)
 
   return (
     <PlayContainer>
       <ScoreBoard />
-      <Heading2>{gameWinner}</Heading2>
+      <Heading2>{gameResult}</Heading2>
       <GameMove />
       <SelectMove />
       <GameOptions />

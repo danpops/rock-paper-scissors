@@ -9,7 +9,7 @@ type GameStateType = {
   userPlay: string
   compPlay: string
   winner: string | undefined
-  gameWinner: string
+  gameResult: string
   isReset: boolean
   score: ScoreType
 }
@@ -18,7 +18,7 @@ const initialState: GameStateType = {
   userPlay: '?',
   compPlay: '?',
   winner: undefined,
-  gameWinner: '',
+  gameResult: '',
   isReset: false,
   score: {
     user: 0,
@@ -37,7 +37,7 @@ const gameSlice = createSlice({
       state.userPlay = '?'
       state.compPlay = '?'
       state.winner = undefined
-      state.gameWinner = ''
+      state.gameResult = ''
       state.isReset = false
       state.score = {
         user: 0,
@@ -46,14 +46,14 @@ const gameSlice = createSlice({
     },
     userWins: (state) => {
       state.score.user += 1
-      state.gameWinner = 'You Win!'
+      state.gameResult = 'You Win!'
     },
     compWins: (state) => {
       state.score.comp += 1
-      state.gameWinner = 'Computer Wins!'
+      state.gameResult = 'Computer Wins!'
     },
     draw: (state) => {
-      state.gameWinner = 'Draw!'
+      state.gameResult = 'Draw!'
     },
     showReset: (state) => {
       state.isReset = true
@@ -61,7 +61,7 @@ const gameSlice = createSlice({
     playNewGame: (state, action: PayloadAction<string>) => {
       state.compPlay = '?'
       state.isReset = false
-      state.gameWinner = ''
+      state.gameResult = ''
 
       state.userPlay = action.payload
     },
