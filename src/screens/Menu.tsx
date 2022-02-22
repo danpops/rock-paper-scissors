@@ -2,7 +2,7 @@ import React from 'react'
 import { Pressable, Text } from '../components/Button'
 import { MenuContainer } from '../components/Layout'
 import { Heading1, Heading4 } from '../components/Text'
-import { NavStackProps } from '../types/RouteType'
+import { NavStackProps } from '../routes/types/route.type'
 
 const Menu = ({ navigation }: NavStackProps) => {
   const onPressPlay = () => navigation.navigate('Play')

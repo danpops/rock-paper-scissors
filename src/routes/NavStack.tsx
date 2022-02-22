@@ -6,7 +6,7 @@ import {
 
 import Menu from '../screens/Menu'
 import Play from '../screens/Play'
-import { NavStackParamsType } from '../types/RouteType'
+import { NavStackParamsType } from './types/route.type'
 
 const Stack = createNativeStackNavigator<NavStackParamsType>()
 
