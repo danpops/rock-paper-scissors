@@ -27,8 +27,8 @@ const NavStack = () => {
         name="Play"
         component={Play}
         options={{
-          headerTitle: '',
-          headerBackTitle: 'Back',
+          headerBackVisible: false,
+          headerTitle: 'Rock / Paper / Scissors',
         }}
       />
     </Stack.Navigator>
