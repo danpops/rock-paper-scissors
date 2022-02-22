@@ -1,19 +1,21 @@
 import React from 'react'
 import { useAppSelector } from '../../store/hooks'
 import { Column, Row } from '../Layout'
-import { Heading3, Heading6 } from '../Text'
+import { Heading3 } from '../Text'
+import MoveIcon from './MoveIcon'
 
 const PlayerMove = () => {
   const { userPlay, compPlay } = useAppSelector((state) => state.game)
+
   return (
     <Row>
       <Column>
         <Heading3>You</Heading3>
-        <Heading6>{userPlay}</Heading6>
+        <MoveIcon playerSelection={userPlay} />
       </Column>
       <Column>
         <Heading3>CPU</Heading3>
-        <Heading6>{compPlay}</Heading6>
+        <MoveIcon playerSelection={compPlay} />
       </Column>
     </Row>
   )
