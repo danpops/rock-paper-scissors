@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useAppSelector } from '../../store/hooks'
-import { Heading3, Heading4 } from '../Text'
+import { Heading3, Heading6 } from '../Text'
 
 const styles = StyleSheet.create({
   column: {
@@ -23,11 +23,11 @@ const GameMove = () => {
     <View style={styles.row}>
       <View style={styles.column}>
         <Heading3 style={styles.title}>You</Heading3>
-        <Heading4>{userPlay}</Heading4>
+        <Heading6>{userPlay}</Heading6>
       </View>
       <View style={styles.column}>
         <Heading3 style={styles.title}>CPU</Heading3>
-        <Heading4>{compPlay}</Heading4>
+        <Heading6>{compPlay}</Heading6>
       </View>
     </View>
   )

@@ -25,6 +25,7 @@ export const Heading4 = styled.Text`
   font-weight: 300;
   color: white;
   padding-bottom: 20px;
+  margin-top: 14px;
 `
 
 export const Heading5 = styled.Text`

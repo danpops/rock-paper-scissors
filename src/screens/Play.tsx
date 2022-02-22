@@ -13,8 +13,8 @@ const Play = () => {
   return (
     <PlayContainer>
       <ScoreBoard />
-      <Heading2>{gameResult}</Heading2>
       <GameMove />
+      <Heading2>{gameResult}</Heading2>
       <SelectMove />
       <GameOptions />
     </PlayContainer>

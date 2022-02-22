@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pressable, Text } from '../components/Button'
 import { MenuContainer } from '../components/Layout'
-import { Heading1 } from '../components/Text'
+import { Heading1, Heading4 } from '../components/Text'
 import { NavStackProps } from '../types/RouteType'
 
 const Menu = ({ navigation }: NavStackProps) => {
@@ -10,6 +10,7 @@ const Menu = ({ navigation }: NavStackProps) => {
   return (
     <MenuContainer>
       <Heading1>Rock / Paper / Scissors</Heading1>
+      <Heading4>danpops 2k22</Heading4>
       <Pressable onPress={onPressPlay}>
         <Text>Play</Text>
       </Pressable>
