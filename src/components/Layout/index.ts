@@ -11,8 +11,13 @@ export const AppContainer = styled.View`
 
 export const Container = styled.View`
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+`
+
+export const MiniContain = styled.View`
+  align-items: center;
+  justify-content: center;
 `
 
 export const Section = styled.View`
