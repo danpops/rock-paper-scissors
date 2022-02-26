@@ -1,18 +1,17 @@
 import styled from 'styled-components/native'
 
-export const PlayContainer = styled.View`
+export const AppContainer = styled.View`
   flex: 1;
   background-color: #272343;
   width: 100%;
   align-items: center;
-  padding-top: 105px;
+  justify-content: center;
+  flex-direction: column;
 `
 
-export const MenuContainer = styled.View`
-  flex: 1;
-  background-color: #272343;
-  padding-top: 177px;
+export const Container = styled.View`
   width: 100%;
+  justify-content: center;
   align-items: center;
 `
 

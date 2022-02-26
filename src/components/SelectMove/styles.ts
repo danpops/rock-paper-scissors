@@ -4,15 +4,15 @@ import { Row } from '../Layout'
 export const SelectMoveContainer = styled.View`
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  padding: 10px;
 `
 
 export const SelectMoveRow = styled(Row)`
-  margin-top: 25px;
+  padding: 20px;
 `
 
 export const SelectMoveIcon = styled.Image`
   width: 100px;
   height: 100px;
-  margin: 8px;
+  margin: 10px;
 `

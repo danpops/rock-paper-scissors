@@ -1,24 +1,24 @@
 import React from 'react'
-import { Button } from 'react-native'
 import useRockPaperScissors from '../../hooks/useRockPaperScissors'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { resetGame } from '../../store/slices/game.reducer'
-import { GameOptionContainer } from './styles'
+import { useAppSelector } from '../../store/hooks'
+import MenuButton from '../Buttons/MenuButton'
+import { Container } from '../Layout'
 
 const GameOptions = () => {
-  const dispatch = useAppDispatch()
-  const { isReset, userPlay, compPlay } = useAppSelector((state) => state.game)
+  const { userPlay, compPlay } = useAppSelector((state) => state.game)
   const { onChallenge } = useRockPaperScissors()
 
-  const showChallenge = userPlay !== '?' && compPlay === '?'
-
-  const onPressReset = () => dispatch(resetGame())
+  const isDisabled = userPlay === '?' && compPlay === '?'
 
   return (
-    <GameOptionContainer>
-      {isReset && <Button title="Reset" onPress={onPressReset} />}
-      {showChallenge && <Button title="Challenge" onPress={onChallenge} />}
-    </GameOptionContainer>
+    <Container>
+      <MenuButton
+        disabled={isDisabled}
+        onPress={onChallenge}
+        title="Challenge"
+        bgColor="#bae8e8"
+      />
+    </Container>
   )
 }
 

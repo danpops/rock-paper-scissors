@@ -13,22 +13,20 @@ const Stack = createNativeStackNavigator<NavStackParamsType>()
 const screenOptionStyle: NativeStackNavigationOptions = {
   headerTransparent: true,
   headerTintColor: 'white',
+  headerShown: false,
 }
 
 const NavStack = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen
-        name="Menu"
-        component={Menu}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen
         name="Play"
         component={Play}
         options={{
           headerBackVisible: false,
-          headerTitle: 'Rock / Paper / Scissors',
+          gestureEnabled: false,
+          headerBackButtonMenuEnabled: true,
         }}
       />
     </Stack.Navigator>
