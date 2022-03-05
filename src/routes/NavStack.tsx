@@ -7,29 +7,38 @@ import {
 import Menu from '../screens/Menu'
 import Play from '../screens/Play'
 import { NavStackParamsType } from './types/route.type'
+import Options from '../screens/Options'
+import useDesign from '../hooks/useDesign'
+import { StatusBar } from 'react-native'
 
 const Stack = createNativeStackNavigator<NavStackParamsType>()
 
-const screenOptionStyle: NativeStackNavigationOptions = {
-  headerTransparent: true,
-  headerTintColor: 'white',
-  headerShown: false,
-}
-
 const NavStack = () => {
+  const { fontColor } = useDesign()
+  const status = fontColor === 'white' ? 'light-content' : 'dark-content'
+  const screenOptionStyle: NativeStackNavigationOptions = {
+    headerTransparent: true,
+    headerTintColor: fontColor,
+    headerShown: false,
+  }
+
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Menu" component={Menu} />
-      <Stack.Screen
-        name="Play"
-        component={Play}
-        options={{
-          headerBackVisible: false,
-          gestureEnabled: false,
-          headerBackButtonMenuEnabled: true,
-        }}
-      />
-    </Stack.Navigator>
+    <>
+      <StatusBar barStyle={status} />
+      <Stack.Navigator screenOptions={screenOptionStyle}>
+        <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen
+          name="Play"
+          component={Play}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="Options"
+          component={Options}
+          options={{ headerShown: true }}
+        />
+      </Stack.Navigator>
+    </>
   )
 }
 

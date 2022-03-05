@@ -1,11 +1,24 @@
 import styled from 'styled-components/native'
 
-export const AppContainer = styled.View`
+interface ContainerProps {
+  backgroundColor: string
+}
+
+export const AppContainer = styled.View<ContainerProps>`
   flex: 1;
-  background-color: #272343;
+  background-color: ${(props) => props.backgroundColor};
   width: 100%;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+`
+
+export const OptionsContainer = styled.View<ContainerProps>`
+  flex: 1;
+  background-color: ${(props) => props.backgroundColor};
+  width: 100%;
+  align-items: center;
+  padding-vertical: 80px
   flex-direction: column;
 `
 

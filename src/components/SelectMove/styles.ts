@@ -5,6 +5,7 @@ export const SelectMoveContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin-top: 25px;
 `
 
 export const SelectMoveRow = styled(Row)`

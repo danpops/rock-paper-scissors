@@ -18,12 +18,12 @@ describe('Game Slice', () => {
       const expectedResult: GameState = {
         userPlay: '?',
         compPlay: 'R',
-        gameResult: '',
         isReset: false,
         score: {
           user: 0,
           comp: 0,
         },
+        round: 1,
       }
       const actualResult = gameSlice(INITIAL_GAME_STATE, action)
       expect(actualResult).toEqual(expectedResult)
@@ -35,12 +35,12 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'S',
-        gameResult: 'You Win!',
         isReset: true,
         score: {
           user: 1,
           comp: 5,
         },
+        round: 5,
       }
       const action = resetGame()
       const actualResult = gameSlice(currentState, action)
@@ -53,19 +53,20 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'S',
-        gameResult: '',
         isReset: false,
         score: {
           user: 2,
           comp: 4,
         },
+        round: 3,
       }
 
       const action = userWins()
       const expectedResult = {
         ...currentState,
-        gameResult: 'You Win!',
+
         score: { user: 3, comp: 4 },
+        round: 4,
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)
@@ -77,19 +78,19 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'P',
         compPlay: 'S',
-        gameResult: '',
         isReset: false,
         score: {
           user: 3,
           comp: 4,
         },
+        round: 5,
       }
 
       const action = compWins()
       const expectedResult = {
         ...currentState,
-        gameResult: 'Computer Wins!',
         score: { user: 3, comp: 5 },
+        round: 6,
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)
@@ -101,19 +102,19 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'R',
-        gameResult: '',
         isReset: false,
         score: {
           user: 2,
           comp: 2,
         },
+        round: 2,
       }
 
       const action = draw()
       const expectedResult = {
         ...currentState,
-        gameResult: 'Draw!',
         score: { user: 2, comp: 2 },
+        round: 3,
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)
@@ -137,12 +138,12 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'P',
         compPlay: 'S',
-        gameResult: 'Computer Wins!',
         isReset: true,
         score: {
           user: 2,
           comp: 4,
         },
+        round: 3,
       }
       const userPlay = 'P'
       const action = playNewGame(userPlay)
@@ -150,7 +151,6 @@ describe('Game Slice', () => {
         ...currentState,
         userPlay,
         compPlay: '?',
-        gameResult: '',
         isReset: false,
       }
       const actualResult = gameSlice(currentState, action)

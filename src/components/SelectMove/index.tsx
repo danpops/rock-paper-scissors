@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pressable } from 'react-native'
+import useDesign from '../../hooks/useDesign'
 import { useAppDispatch } from '../../store/hooks'
 import { playNewGame } from '../../store/slices/game.reducer'
 import getPlayerMoveIcon from '../../utils/imageDictionary'
@@ -8,6 +9,7 @@ import { SelectMoveContainer, SelectMoveIcon, SelectMoveRow } from './styles'
 
 const SelectMove = () => {
   const dispatch = useAppDispatch()
+  const { fontColor } = useDesign()
 
   const onSelectRock = () => dispatch(playNewGame('R'))
   const onSelectPaper = () => dispatch(playNewGame('P'))
@@ -15,7 +17,7 @@ const SelectMove = () => {
 
   return (
     <SelectMoveContainer>
-      <Heading3>Choose your move</Heading3>
+      <Heading3 color={fontColor}>Choose your move</Heading3>
       <SelectMoveRow>
         <Pressable onPress={onSelectRock}>
           <SelectMoveIcon source={getPlayerMoveIcon('R')} />

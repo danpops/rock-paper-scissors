@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Alert } from 'react-native'
 
 type ScoreType = {
   user: number
@@ -8,21 +9,24 @@ type ScoreType = {
 export type GameState = {
   userPlay: string
   compPlay: string
-  gameResult: string
   isReset: boolean
   score: ScoreType
+  round: number
 }
 
 export const INITIAL_GAME_STATE: GameState = {
   userPlay: '?',
   compPlay: '?',
-  gameResult: '',
   isReset: false,
+  round: 1,
   score: {
     user: 0,
     comp: 0,
   },
 }
+
+const getAlert = (message: string, round: number) =>
+  Alert.alert(`Round ${round}`, message)
 
 const gameSlice = createSlice({
   name: 'game',
@@ -31,26 +35,33 @@ const gameSlice = createSlice({
     setCompPlay: (state, action: PayloadAction<string>) => {
       state.compPlay = action.payload
     },
+    clearMove: (state) => {
+      state.compPlay = '?'
+      state.userPlay = '?'
+    },
     resetGame: (state) => {
       state.userPlay = '?'
       state.compPlay = '?'
-      state.gameResult = ''
       state.isReset = false
       state.score = {
         user: 0,
         comp: 0,
       }
+      state.round = 1
     },
     userWins: (state) => {
+      getAlert('You Win!', state.round)
+      state.round += 1
       state.score.user += 1
-      state.gameResult = 'You Win!'
     },
     compWins: (state) => {
+      getAlert('Computer Wins!', state.round)
+      state.round += 1
       state.score.comp += 1
-      state.gameResult = 'Computer Wins!'
     },
     draw: (state) => {
-      state.gameResult = 'Draw!'
+      getAlert('Draw!', state.round)
+      state.round += 1
     },
     showReset: (state) => {
       state.isReset = true
@@ -58,7 +69,6 @@ const gameSlice = createSlice({
     playNewGame: (state, action: PayloadAction<string>) => {
       state.compPlay = '?'
       state.isReset = false
-      state.gameResult = ''
 
       state.userPlay = action.payload
     },
@@ -68,6 +78,7 @@ const gameSlice = createSlice({
 export const {
   userWins,
   compWins,
+  clearMove,
   draw,
   setCompPlay,
   playNewGame,

@@ -1,31 +1,46 @@
 import React from 'react'
 import styled from 'styled-components/native'
+import { useAppSelector } from '../../../store/hooks'
 
 interface ButtonProps {
   onPress: () => void
-  bgColor: string
   title?: string
   disabled?: boolean
+  color?: string
+}
+
+interface TextProps {
+  disabled?: boolean
+  color?: string
 }
 
 const ButtonContainer = styled.TouchableOpacity<ButtonProps>`
-  margin-vertical: 40px;
+  margin-top: 25px;
   width: 120px;
   height: 40px;
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
-  background-color: ${(props) => props.bgColor};
+  background-color: ${({ color }) => color};
 `
-const ButtonText = styled.Text`
+
+const ButtonText = styled.Text<TextProps>`
   font-size: 16px;
   text-align: center;
+  color: ${({ color }) => color};
 `
 
 const MenuButton = (props: ButtonProps) => {
-  const { onPress, bgColor, title, disabled = false } = props
+  const { button } = useAppSelector((state) => state.design)
+  const { onPress, title, disabled = false } = props
   return (
-    <ButtonContainer disabled={disabled} onPress={onPress} bgColor={bgColor}>
-      <ButtonText>{title}</ButtonText>
+    <ButtonContainer
+      color={button.background}
+      disabled={disabled}
+      onPress={onPress}
+    >
+      <ButtonText color={button.color} disabled={disabled}>
+        {title}
+      </ButtonText>
     </ButtonContainer>
   )
 }
