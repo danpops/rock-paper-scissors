@@ -13,7 +13,11 @@ const Options: React.FC = () => {
         Colors
       </Heading1>
       {colorOptions.map((button, index) => (
-        <MenuButton key={index} title={button.title} onPress={button.onPress} />
+        <MenuButton
+          key={index}
+          title={button.title}
+          onPress={button.dispatchColor}
+        />
       ))}
     </OptionsContainer>
   )

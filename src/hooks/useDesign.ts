@@ -14,13 +14,13 @@ const useDesign = () => {
   const { backgroundColor, fontColor } = useAppSelector((state) => state.design)
 
   const colorOptions = [
-    { title: 'Default', onPress: () => dispatch(setDefault()) },
-    { title: 'Red', onPress: () => dispatch(setRed()) },
-    { title: 'Orange', onPress: () => dispatch(setOrange()) },
-    { title: 'Yellow', onPress: () => dispatch(setYellow()) },
-    { title: 'Green', onPress: () => dispatch(setGreen()) },
-    { title: 'Blue', onPress: () => dispatch(setBlue()) },
-    { title: 'Purple', onPress: () => dispatch(setPurple()) },
+    { title: 'Default', dispatchColor: () => dispatch(setDefault()) },
+    { title: 'Red', dispatchColor: () => dispatch(setRed()) },
+    { title: 'Orange', dispatchColor: () => dispatch(setOrange()) },
+    { title: 'Yellow', dispatchColor: () => dispatch(setYellow()) },
+    { title: 'Green', dispatchColor: () => dispatch(setGreen()) },
+    { title: 'Blue', dispatchColor: () => dispatch(setBlue()) },
+    { title: 'Purple', dispatchColor: () => dispatch(setPurple()) },
   ]
 
   return {
