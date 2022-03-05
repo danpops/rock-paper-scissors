@@ -1,11 +1,11 @@
 export const colors = {
   default: '#272343',
-  red: 'red',
-  orange: 'orange',
-  yellow: 'yellow',
-  green: 'green',
-  blue: 'blue',
-  purple: 'purple',
+  red: '#D2042D',
+  orange: '#FFA500',
+  yellow: '#FFEA00',
+  green: '#00D100',
+  blue: '#189AB4',
+  purple: '#A020F0',
   white: 'white',
   black: 'black',
 }

@@ -27,6 +27,7 @@ export const Heading3 = styled.Text<TextColorProps>`
 export const Heading4 = styled.Text<TextColorProps>`
   font-size: 22px;
   font-weight: 300;
+  margin-bottom: 30px;
   color: ${(props) => getTextColor(props.color)};
 `
 

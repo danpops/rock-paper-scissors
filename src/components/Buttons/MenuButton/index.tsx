@@ -7,6 +7,7 @@ interface ButtonProps {
   title?: string
   disabled?: boolean
   color?: string
+  style?: object
 }
 
 interface TextProps {
@@ -31,9 +32,10 @@ const ButtonText = styled.Text<TextProps>`
 
 const MenuButton = (props: ButtonProps) => {
   const { button } = useAppSelector((state) => state.design)
-  const { onPress, title, disabled = false } = props
+  const { onPress, title, disabled = false, style = {} } = props
   return (
     <ButtonContainer
+      style={style}
       color={button.background}
       disabled={disabled}
       onPress={onPress}
