@@ -10,9 +10,9 @@ const useSelectMove = () => {
   const onSelectScissors = () => dispatch(playNewGame('S'))
 
   const moveOptions = [
-    { onPress: onSelectRock, source: getPlayerMoveIcon('R') },
-    { onPress: onSelectPaper, source: getPlayerMoveIcon('P') },
-    { onPress: onSelectScissors, source: getPlayerMoveIcon('S') },
+    { onPress: onSelectRock, source: getPlayerMoveIcon('R'), move: 'R' },
+    { onPress: onSelectPaper, source: getPlayerMoveIcon('P'), move: 'P' },
+    { onPress: onSelectScissors, source: getPlayerMoveIcon('S'), move: 'S' },
   ]
 
   return { moveOptions }

@@ -23,13 +23,13 @@ const GameOptions = () => {
         disabled={disableChallange}
         onPress={onChallenge}
         style={opacityStyle}
-        title="Challenge"
+        title="challenge"
       />
       <TextButton
         onPress={onClear}
         disabled={disableClear}
         style={opacityStyle}
-        title="Clear"
+        title="clear"
       />
     </Container>
   )

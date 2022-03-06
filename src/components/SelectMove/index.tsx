@@ -2,22 +2,28 @@ import React from 'react'
 import { Pressable } from 'react-native'
 import useDesign from '../../hooks/useDesign'
 import useSelectMove from '../../hooks/useSelectMove'
+import { useAppSelector } from '../../store/hooks'
+import AnimatedHand from '../AnimatedHand'
 import { Heading3 } from '../Text'
-import { SelectMoveContainer, SelectMoveIcon, SelectMoveRow } from './styles'
+import { SelectMoveContainer, SelectMoveRow } from './styles'
 
 const SelectMove = () => {
   const { fontColor } = useDesign()
   const { moveOptions } = useSelectMove()
+  const { userPlay } = useAppSelector((state) => state.game)
 
   return (
     <SelectMoveContainer>
-      <Heading3 color={fontColor}>Choose your move</Heading3>
+      <Heading3 color={fontColor}>choose your move.</Heading3>
       <SelectMoveRow>
-        {moveOptions.map(({ onPress, source }, index) => (
-          <Pressable key={index} onPress={onPress}>
-            <SelectMoveIcon source={source} />
-          </Pressable>
-        ))}
+        {moveOptions.map(({ onPress, source, move }, index) => {
+          const isUserPlay = userPlay === move
+          return (
+            <Pressable key={index} onPress={onPress}>
+              <AnimatedHand active={isUserPlay} source={source} />
+            </Pressable>
+          )
+        })}
       </SelectMoveRow>
     </SelectMoveContainer>
   )

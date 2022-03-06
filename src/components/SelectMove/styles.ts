@@ -5,11 +5,11 @@ export const SelectMoveContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  margin-top: 25px;
+  margin-top: 10px;
 `
 
 export const SelectMoveRow = styled(Row)`
-  padding: 20px;
+  padding: 10px;
 `
 
 export const SelectMoveIcon = styled.Image`

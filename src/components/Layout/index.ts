@@ -18,7 +18,7 @@ export const OptionsContainer = styled.View<ContainerProps>`
   background-color: ${(props) => props.backgroundColor};
   width: 100%;
   align-items: center;
-  padding-vertical: 80px
+  justify-content: center;
   flex-direction: column;
 `
 
@@ -34,7 +34,7 @@ export const MiniContain = styled.View`
 `
 
 export const Section = styled.View`
-  padding: 30px 24px;
+  padding: 5px 24px;
 `
 
 export const Row = styled.View`

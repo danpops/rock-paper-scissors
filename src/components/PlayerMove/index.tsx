@@ -13,12 +13,12 @@ const PlayerMove = () => {
     <Section>
       <Row>
         <Column>
-          <Heading3 color={fontColor}>You</Heading3>
+          <Heading3 color={fontColor}>you.</Heading3>
           <MoveIcon playerSelection={userPlay} />
           <Heading6 color={fontColor}>{score.user}</Heading6>
         </Column>
         <Column>
-          <Heading3 color={fontColor}>CPU</Heading3>
+          <Heading3 color={fontColor}>computer.</Heading3>
           <MoveIcon playerSelection={compPlay} />
           <Heading6 color={fontColor}>{score.comp}</Heading6>
         </Column>
