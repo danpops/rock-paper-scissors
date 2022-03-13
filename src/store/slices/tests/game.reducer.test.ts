@@ -7,6 +7,7 @@ import gameSlice, {
   playNewGame,
   GameState,
   INITIAL_GAME_STATE,
+  setUserPlay,
 } from '../game.reducer'
 
 describe('Game Slice', () => {
@@ -17,6 +18,28 @@ describe('Game Slice', () => {
       const expectedResult: GameState = {
         userPlay: '?',
         compPlay: 'R',
+        score: {
+          user: 0,
+          comp: 0,
+        },
+        selectedMoveBg: {
+          user: 1,
+          comp: 1,
+        },
+        round: 1,
+      }
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      expect(actualResult).toEqual(expectedResult)
+    })
+  })
+
+  describe('setUserPlay', () => {
+    it('should update user play', () => {
+      const userPlay = 'P'
+      const action = setUserPlay(userPlay)
+      const expectedResult: GameState = {
+        userPlay: 'P',
+        compPlay: '?',
         score: {
           user: 0,
           comp: 0,

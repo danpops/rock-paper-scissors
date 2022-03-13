@@ -7,16 +7,24 @@ import {
   userWins,
   compWins,
   draw,
+  clearMove,
+  setUserPlay,
 } from '../store/slices/game.reducer'
 
 const useRockPaperScissors = () => {
   const dispatch = useAppDispatch()
-  const { userPlay } = useAppSelector((state) => state.game)
+  const { compPlay, userPlay } = useAppSelector((state) => state.game)
 
-  const onChallenge = () => {
+  const onChallenge = async () => {
     if (userPlay === '?') {
       Alert.alert('Please select a move.')
       return
+    }
+
+    if (userPlay !== '?' && compPlay !== '?') {
+      const tempUser = userPlay
+      await dispatch(clearMove())
+      await dispatch(setUserPlay(tempUser))
     }
 
     const computerMove = String(getComputerMove())

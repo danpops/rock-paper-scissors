@@ -34,6 +34,9 @@ const gameSlice = createSlice({
     setCompPlay: (state, action: PayloadAction<string>) => {
       state.compPlay = action.payload
     },
+    setUserPlay: (state, action: PayloadAction<string>) => {
+      state.userPlay = action.payload
+    },
     clearMove: (state) => {
       state.compPlay = '?'
       state.userPlay = '?'
@@ -97,6 +100,7 @@ export const {
   draw,
   setCompPlay,
   playNewGame,
+  setUserPlay,
   resetGame,
 } = gameSlice.actions
 export default gameSlice.reducer

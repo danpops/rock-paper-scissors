@@ -4,25 +4,25 @@ import TextButton from '../components/Buttons/TextButton'
 import { AppContainer } from '../components/Layout'
 import { Heading1 } from '../components/Text'
 import useDesign from '../hooks/useDesign'
+import useEasterTitle from '../hooks/useEasterTitle'
 import { NavStackProps } from '../routes/types/route.type'
 
 const RPS_TITLE = 'rock / paper / scissors'
 
 const Menu = ({ navigation }: NavStackProps) => {
   const { backgroundColor, fontColor } = useDesign()
-  const [isEaster, setEaster] = React.useState(false)
+  const { title, toggleCaps } = useEasterTitle(RPS_TITLE)
   const onPressPlay = () => navigation.navigate('Play')
   const onPressOptions = () => navigation.navigate('Colors')
-  const fontEaster = () => setEaster(!isEaster)
 
   return (
     <AppContainer backgroundColor={backgroundColor}>
       <Heading1
-        onPress={fontEaster}
+        onPress={toggleCaps}
         style={{ marginBottom: 20 }}
         color={fontColor}
       >
-        {isEaster ? RPS_TITLE.toUpperCase() : RPS_TITLE}
+        {title}
       </Heading1>
       <MenuButton onPress={onPressPlay} title="play" />
       <TextButton title="colors" onPress={onPressOptions} />
