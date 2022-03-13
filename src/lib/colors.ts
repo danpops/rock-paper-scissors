@@ -8,4 +8,7 @@ export const colors = {
   purple: '#9370DB',
   white: 'white',
   black: 'black',
+  error: '#C84D4F',
+  success: '#4EC85B',
+  lightGray: '#F8F8F8',
 }

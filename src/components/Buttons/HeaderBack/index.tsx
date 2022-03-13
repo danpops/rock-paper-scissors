@@ -20,8 +20,8 @@ const HeaderBack = (props: HeaderBackButtonProps) => {
   const backOnPress = async () => {
     if (round > 1) {
       Alert.alert(
-        'Exit Game',
-        'Are you sure you would like to exit the game? All changes will be lost.',
+        'Quit Game',
+        'Are you sure you would like to quit the game? All changes will be lost.',
         [
           {
             onPress: noop,
@@ -31,7 +31,7 @@ const HeaderBack = (props: HeaderBackButtonProps) => {
           {
             onPress: exitOnPress,
             style: 'destructive',
-            text: 'Exit',
+            text: 'Quit',
           },
         ],
       )

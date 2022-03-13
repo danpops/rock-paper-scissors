@@ -14,7 +14,6 @@ export const LoadingContainer = styled.View`
   width: 134px;
   height: 134px;
   border-radius: 67px;
-  background-color: ${colors.white};
   justify-content: center;
   align-items: center;
   z-index: 1;

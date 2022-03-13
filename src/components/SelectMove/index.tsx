@@ -7,10 +7,15 @@ import AnimatedHand from '../AnimatedHand'
 import { Heading3 } from '../Text'
 import { SelectMoveContainer, SelectMoveRow } from './styles'
 
+const SELECTING_MOVE = '?'
+
 const SelectMove = () => {
   const { fontColor } = useDesign()
   const { moveOptions } = useSelectMove()
-  const { userPlay } = useAppSelector((state) => state.game)
+  const { userPlay, compPlay } = useAppSelector((state) => state.game)
+
+  const stopAnimation =
+    userPlay !== SELECTING_MOVE && compPlay !== SELECTING_MOVE
 
   return (
     <SelectMoveContainer>
@@ -20,7 +25,10 @@ const SelectMove = () => {
           const isUserPlay = userPlay === move
           return (
             <Pressable key={index} onPress={onPress}>
-              <AnimatedHand active={isUserPlay} source={source} />
+              <AnimatedHand
+                active={isUserPlay && !stopAnimation}
+                source={source}
+              />
             </Pressable>
           )
         })}

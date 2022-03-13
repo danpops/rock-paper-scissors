@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { getComputerMove } from '../utils/computerMove'
 import { rockPaperScissorsCheck } from '../utils/rockPaperScissorsCheck'
 import {
-  showReset,
   setCompPlay,
   userWins,
   compWins,
@@ -19,8 +18,6 @@ const useRockPaperScissors = () => {
       Alert.alert('Please select a move.')
       return
     }
-
-    dispatch(showReset())
 
     const computerMove = String(getComputerMove())
     dispatch(setCompPlay(computerMove))

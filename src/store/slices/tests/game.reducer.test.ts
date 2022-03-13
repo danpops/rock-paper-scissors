@@ -4,7 +4,6 @@ import gameSlice, {
   userWins,
   compWins,
   draw,
-  showReset,
   playNewGame,
   GameState,
   INITIAL_GAME_STATE,
@@ -18,10 +17,13 @@ describe('Game Slice', () => {
       const expectedResult: GameState = {
         userPlay: '?',
         compPlay: 'R',
-        isReset: false,
         score: {
           user: 0,
           comp: 0,
+        },
+        selectedMoveBg: {
+          user: 1,
+          comp: 1,
         },
         round: 1,
       }
@@ -35,10 +37,13 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'S',
-        isReset: true,
         score: {
           user: 1,
           comp: 5,
+        },
+        selectedMoveBg: {
+          user: 1,
+          comp: 2,
         },
         round: 5,
       }
@@ -53,10 +58,13 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'S',
-        isReset: false,
         score: {
           user: 2,
           comp: 4,
+        },
+        selectedMoveBg: {
+          user: 0,
+          comp: 2,
         },
         round: 3,
       }
@@ -78,10 +86,13 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'P',
         compPlay: 'S',
-        isReset: false,
         score: {
           user: 3,
           comp: 4,
+        },
+        selectedMoveBg: {
+          user: 2,
+          comp: 0,
         },
         round: 5,
       }
@@ -102,10 +113,13 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'R',
-        isReset: false,
         score: {
           user: 2,
           comp: 2,
+        },
+        selectedMoveBg: {
+          user: 1,
+          comp: 1,
         },
         round: 2,
       }
@@ -121,27 +135,18 @@ describe('Game Slice', () => {
     })
   })
 
-  describe('showReset', () => {
-    it('should set isReset true', () => {
-      const action = showReset()
-      const expectedResult = {
-        ...INITIAL_GAME_STATE,
-        isReset: true,
-      }
-      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
-
   describe('playNewGame', () => {
     it('should set new game', () => {
       const currentState: GameState = {
         userPlay: 'P',
         compPlay: 'S',
-        isReset: true,
         score: {
           user: 2,
           comp: 4,
+        },
+        selectedMoveBg: {
+          user: 1,
+          comp: 1,
         },
         round: 3,
       }
@@ -151,7 +156,6 @@ describe('Game Slice', () => {
         ...currentState,
         userPlay,
         compPlay: '?',
-        isReset: false,
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)

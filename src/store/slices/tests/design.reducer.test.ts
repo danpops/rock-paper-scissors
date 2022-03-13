@@ -17,10 +17,6 @@ describe('Design Slice', () => {
       const currentState: DesignState = {
         backgroundColor: colors.red,
         fontColor: colors.blue,
-        button: {
-          color: colors.red,
-          background: colors.orange,
-        },
       }
       const action = setDefault()
 
@@ -34,10 +30,6 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.red,
         fontColor: colors.white,
-        button: {
-          color: colors.red,
-          background: colors.white,
-        },
       }
       const action = setRed()
 
@@ -50,11 +42,7 @@ describe('Design Slice', () => {
     it('should set colors orange', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.orange,
-        fontColor: colors.white,
-        button: {
-          color: colors.orange,
-          background: colors.white,
-        },
+        fontColor: colors.black,
       }
       const action = setOrange()
 
@@ -68,10 +56,6 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.yellow,
         fontColor: colors.black,
-        button: {
-          color: colors.yellow,
-          background: colors.black,
-        },
       }
       const action = setYellow()
 
@@ -85,10 +69,6 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.green,
         fontColor: colors.white,
-        button: {
-          color: colors.green,
-          background: colors.white,
-        },
       }
       const action = setGreen()
 
@@ -102,10 +82,6 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.blue,
         fontColor: colors.black,
-        button: {
-          color: colors.blue,
-          background: colors.black,
-        },
       }
       const action = setBlue()
 
@@ -119,10 +95,6 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.purple,
         fontColor: colors.white,
-        button: {
-          color: colors.purple,
-          background: colors.white,
-        },
       }
       const action = setPurple()
 

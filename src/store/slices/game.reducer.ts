@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Alert } from 'react-native'
 
-type ScoreType = {
+type PlayerType = {
   user: number
   comp: number
 }
@@ -9,24 +8,24 @@ type ScoreType = {
 export type GameState = {
   userPlay: string
   compPlay: string
-  isReset: boolean
-  score: ScoreType
+  score: PlayerType
+  selectedMoveBg: PlayerType
   round: number
 }
 
 export const INITIAL_GAME_STATE: GameState = {
   userPlay: '?',
   compPlay: '?',
-  isReset: false,
+  selectedMoveBg: {
+    user: 1,
+    comp: 1,
+  },
   round: 1,
   score: {
     user: 0,
     comp: 0,
   },
 }
-
-const getAlert = (message: string, round: number) =>
-  Alert.alert(`Round ${round}`, message)
 
 const gameSlice = createSlice({
   name: 'game',
@@ -38,38 +37,54 @@ const gameSlice = createSlice({
     clearMove: (state) => {
       state.compPlay = '?'
       state.userPlay = '?'
+      state.selectedMoveBg = {
+        user: 1,
+        comp: 1,
+      }
     },
     resetGame: (state) => {
       state.userPlay = '?'
       state.compPlay = '?'
-      state.isReset = false
+
       state.score = {
         user: 0,
         comp: 0,
       }
+      state.selectedMoveBg = {
+        user: 1,
+        comp: 1,
+      }
       state.round = 1
     },
     userWins: (state) => {
-      getAlert('You Win!', state.round)
       state.round += 1
       state.score.user += 1
+      state.selectedMoveBg = {
+        user: 0,
+        comp: 2,
+      }
     },
     compWins: (state) => {
-      getAlert('Computer Wins!', state.round)
       state.round += 1
       state.score.comp += 1
+      state.selectedMoveBg = {
+        user: 2,
+        comp: 0,
+      }
     },
     draw: (state) => {
-      getAlert('Draw!', state.round)
       state.round += 1
-    },
-    showReset: (state) => {
-      state.isReset = true
+      state.selectedMoveBg = {
+        user: 1,
+        comp: 1,
+      }
     },
     playNewGame: (state, action: PayloadAction<string>) => {
       state.compPlay = '?'
-      state.isReset = false
-
+      state.selectedMoveBg = {
+        user: 1,
+        comp: 1,
+      }
       state.userPlay = action.payload
     },
   },
@@ -83,6 +98,5 @@ export const {
   setCompPlay,
   playNewGame,
   resetGame,
-  showReset,
 } = gameSlice.actions
 export default gameSlice.reducer
