@@ -8,14 +8,17 @@ type PlayerType = {
 export type GameState = {
   userPlay: string
   compPlay: string
+  result: string
   score: PlayerType
   selectedMoveBg: PlayerType
   round: number
+  moveVisible: boolean
 }
 
 export const INITIAL_GAME_STATE: GameState = {
   userPlay: '?',
   compPlay: '?',
+  result: '',
   selectedMoveBg: {
     user: 1,
     comp: 1,
@@ -25,6 +28,7 @@ export const INITIAL_GAME_STATE: GameState = {
     user: 0,
     comp: 0,
   },
+  moveVisible: false,
 }
 
 const gameSlice = createSlice({
@@ -37,6 +41,9 @@ const gameSlice = createSlice({
     setUserPlay: (state, action: PayloadAction<string>) => {
       state.userPlay = action.payload
     },
+    setVisible: (state, action: PayloadAction<boolean>) => {
+      state.moveVisible = action.payload
+    },
     clearMove: (state) => {
       state.compPlay = '?'
       state.userPlay = '?'
@@ -44,11 +51,11 @@ const gameSlice = createSlice({
         user: 1,
         comp: 1,
       }
+      state.moveVisible = false
     },
     resetGame: (state) => {
       state.userPlay = '?'
       state.compPlay = '?'
-
       state.score = {
         user: 0,
         comp: 0,
@@ -58,10 +65,12 @@ const gameSlice = createSlice({
         comp: 1,
       }
       state.round = 1
+      state.moveVisible = false
     },
     userWins: (state) => {
       state.round += 1
       state.score.user += 1
+      state.result = 'you win!'
       state.selectedMoveBg = {
         user: 0,
         comp: 2,
@@ -70,6 +79,7 @@ const gameSlice = createSlice({
     compWins: (state) => {
       state.round += 1
       state.score.comp += 1
+      state.result = 'you lose!'
       state.selectedMoveBg = {
         user: 2,
         comp: 0,
@@ -77,6 +87,7 @@ const gameSlice = createSlice({
     },
     draw: (state) => {
       state.round += 1
+      state.result = 'tie game.'
       state.selectedMoveBg = {
         user: 1,
         comp: 1,
@@ -84,11 +95,13 @@ const gameSlice = createSlice({
     },
     playNewGame: (state, action: PayloadAction<string>) => {
       state.compPlay = '?'
+
       state.selectedMoveBg = {
         user: 1,
         comp: 1,
       }
       state.userPlay = action.payload
+      state.moveVisible = false
     },
   },
 })
@@ -101,6 +114,7 @@ export const {
   setCompPlay,
   playNewGame,
   setUserPlay,
+  setVisible,
   resetGame,
 } = gameSlice.actions
 export default gameSlice.reducer

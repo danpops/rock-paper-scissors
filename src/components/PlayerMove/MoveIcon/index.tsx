@@ -6,6 +6,7 @@ import Animated, {
   interpolateColor,
   useAnimatedStyle,
   useDerivedValue,
+  withDelay,
   withTiming,
 } from 'react-native-reanimated'
 import { colors } from '../../../lib/colors'
@@ -33,7 +34,7 @@ const MoveIcon = ({
   const onClear = () => dispatch(clearMove())
 
   const progress = useDerivedValue(() => {
-    return withTiming(shared)
+    return withDelay(250, withTiming(shared))
   })
 
   const backgroundStyle = useAnimatedStyle(() => {
@@ -57,7 +58,7 @@ const MoveIcon = ({
       {showMove && (
         <Pressable onPress={onClear}>
           <Animated.Image
-            entering={BounceIn}
+            entering={BounceIn.delay(180)}
             exiting={BounceOut}
             style={[styles.moveIcon]}
             source={icon}

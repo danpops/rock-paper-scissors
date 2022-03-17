@@ -1,6 +1,6 @@
 import React from 'react'
+import { StyleSheet, View } from 'react-native'
 import MenuButton from '../components/Buttons/MenuButton'
-import { OptionsContainer } from '../components/Layout'
 import { Heading1 } from '../components/Text'
 import useDesign from '../hooks/useDesign'
 import useEasterTitle from '../hooks/useEasterTitle'
@@ -12,7 +12,7 @@ const Options: React.FC = () => {
   const { title, toggleCaps } = useEasterTitle(COLORS_TITLE)
 
   return (
-    <OptionsContainer backgroundColor={backgroundColor}>
+    <View style={[styles.container, { backgroundColor }]}>
       <Heading1 onPress={toggleCaps} color={fontColor}>
         {title}
       </Heading1>
@@ -23,8 +23,18 @@ const Options: React.FC = () => {
           onPress={button.dispatchColor}
         />
       ))}
-    </OptionsContainer>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+})
 
 export default Options

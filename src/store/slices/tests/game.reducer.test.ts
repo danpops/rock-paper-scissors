@@ -22,6 +22,8 @@ describe('Game Slice', () => {
           user: 0,
           comp: 0,
         },
+        result: '',
+        moveVisible: false,
         selectedMoveBg: {
           user: 1,
           comp: 1,
@@ -44,6 +46,8 @@ describe('Game Slice', () => {
           user: 0,
           comp: 0,
         },
+        result: '',
+        moveVisible: false,
         selectedMoveBg: {
           user: 1,
           comp: 1,
@@ -64,6 +68,8 @@ describe('Game Slice', () => {
           user: 1,
           comp: 5,
         },
+        result: '',
+        moveVisible: false,
         selectedMoveBg: {
           user: 1,
           comp: 2,
@@ -85,6 +91,8 @@ describe('Game Slice', () => {
           user: 2,
           comp: 4,
         },
+        result: 'you win!',
+        moveVisible: true,
         selectedMoveBg: {
           user: 0,
           comp: 2,
@@ -113,6 +121,8 @@ describe('Game Slice', () => {
           user: 3,
           comp: 4,
         },
+        result: 'you lose!',
+        moveVisible: true,
         selectedMoveBg: {
           user: 2,
           comp: 0,
@@ -140,6 +150,8 @@ describe('Game Slice', () => {
           user: 2,
           comp: 2,
         },
+        result: 'tie game.',
+        moveVisible: false,
         selectedMoveBg: {
           user: 1,
           comp: 1,
@@ -167,6 +179,8 @@ describe('Game Slice', () => {
           user: 2,
           comp: 4,
         },
+        result: '',
+        moveVisible: false,
         selectedMoveBg: {
           user: 1,
           comp: 1,

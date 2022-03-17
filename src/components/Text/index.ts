@@ -14,32 +14,32 @@ export const Heading1 = styled.Text<TextColorProps>`
 
 export const Heading2 = styled.Text<TextColorProps>`
   font-size: 25px;
-  font-weight: 200;
+  font-weight: 100;
   color: ${(props) => getTextColor(props.color)};
 `
 
 export const Heading3 = styled.Text<TextColorProps>`
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 400;
   color: ${(props) => getTextColor(props.color)};
 `
 
 export const Heading4 = styled.Text<TextColorProps>`
   font-size: 22px;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 30px;
   color: ${(props) => getTextColor(props.color)};
 `
 
 export const Heading5 = styled.Text<TextColorProps>`
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   color: ${(props) => getTextColor(props.color)};
 `
 
 export const Heading6 = styled.Text<TextColorProps>`
   font-size: 30px;
-  font-weight: 300;
+  font-weight: 400;
   color: ${(props) => getTextColor(props.color)};
 `
 

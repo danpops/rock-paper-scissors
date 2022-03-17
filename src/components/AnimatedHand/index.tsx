@@ -1,52 +1,97 @@
 import React from 'react'
 import { ImageProps, StyleSheet } from 'react-native'
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler'
 import Animated, {
-  Easing,
+  runOnJS,
+  useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
+  withSpring,
 } from 'react-native-reanimated'
+import useRockPaperScissors from '../../hooks/useRockPaperScissors'
+
+type ContextType = {
+  translateX: number
+  translateY: number
+}
+
+const SIZE = 120.0
 
 interface AnimatedHandInterface extends ImageProps {
-  active?: boolean
+  onSwipe: () => void
+  move: string
 }
 const AnimatedHand = (props: AnimatedHandInterface) => {
-  const { active = false, ...imageProps } = props
-  const scale = useSharedValue(1)
+  const { onSwipe, ...imageProps } = props
+  const { onChallenge } = useRockPaperScissors()
 
-  const reanimatedStyle = useAnimatedStyle(() => {
+  const [active, setActive] = React.useState(false)
+
+  const opacityStyle = { opacity: active ? 1 : 0.7 }
+
+  const translateX = useSharedValue(0)
+  const translateY = useSharedValue(0)
+
+  const panGestureEvent = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    ContextType
+  >({
+    onStart: (event, context) => {
+      context.translateX = translateX.value
+      context.translateY = translateY.value
+    },
+    onActive: (event, context) => {
+      runOnJS(onSwipe)()
+      const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2)
+      if (distance > SIZE + 8) {
+        runOnJS(setActive)(true)
+      } else {
+        runOnJS(setActive)(false)
+      }
+      translateX.value = event.translationX + context.translateX
+      translateY.value = event.translationY + context.translateY
+    },
+    onEnd: () => {
+      const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2)
+      if (distance > SIZE + 8) {
+        runOnJS(onChallenge)()
+      }
+      translateX.value = withSpring(0)
+      translateY.value = withSpring(0)
+      runOnJS(setActive)(false)
+    },
+  })
+
+  const rStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: scale.value }],
+      transform: [
+        {
+          translateX: translateX.value,
+        },
+        {
+          translateY: translateY.value,
+        },
+      ],
     }
-  }, [])
-
-  React.useEffect(() => {
-    scale.value = active
-      ? withRepeat(
-          withSequence(
-            withTiming(0.9, { duration: 500, easing: Easing.ease }),
-            withTiming(1.08, { duration: 500, easing: Easing.ease }),
-          ),
-          -1,
-          true,
-        )
-      : 1
-  }, [active])
+  })
 
   return (
-    <Animated.Image
-      style={[styles.container, reanimatedStyle]}
-      {...imageProps}
-    />
+    <PanGestureHandler onGestureEvent={panGestureEvent}>
+      <Animated.Image
+        style={[styles.container, opacityStyle, rStyle]}
+        {...imageProps}
+      />
+    </PanGestureHandler>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: 120,
-    height: 120,
+    width: SIZE,
+    height: SIZE,
     marginVertical: 20,
     shadowOffset: {
       width: 0,

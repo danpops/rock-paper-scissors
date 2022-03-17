@@ -9,6 +9,7 @@ import {
   draw,
   clearMove,
   setUserPlay,
+  setVisible,
 } from '../store/slices/game.reducer'
 
 const useRockPaperScissors = () => {
@@ -16,10 +17,10 @@ const useRockPaperScissors = () => {
   const { compPlay, userPlay } = useAppSelector((state) => state.game)
 
   const onChallenge = async () => {
-    if (userPlay === '?') {
-      Alert.alert('Please select a move.')
-      return
-    }
+    // if (userPlay === '?') {
+    //   Alert.alert('Please select a move.')
+    //   return
+    // }
 
     if (userPlay !== '?' && compPlay !== '?') {
       const tempUser = userPlay
@@ -31,6 +32,8 @@ const useRockPaperScissors = () => {
     dispatch(setCompPlay(computerMove))
 
     const result = rockPaperScissorsCheck(userPlay, computerMove)
+
+    dispatch(setVisible(true))
 
     if (result === 'P1') dispatch(userWins())
     else if (result === 'P2') dispatch(compWins())

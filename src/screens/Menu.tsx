@@ -1,7 +1,7 @@
 import React from 'react'
+import { StyleSheet, View } from 'react-native'
 import MenuButton from '../components/Buttons/MenuButton'
 import TextButton from '../components/Buttons/TextButton'
-import { AppContainer } from '../components/Layout'
 import { Heading1 } from '../components/Text'
 import useDesign from '../hooks/useDesign'
 import useEasterTitle from '../hooks/useEasterTitle'
@@ -16,7 +16,7 @@ const Menu = ({ navigation }: NavStackProps) => {
   const onPressOptions = () => navigation.navigate('Colors')
 
   return (
-    <AppContainer backgroundColor={backgroundColor}>
+    <View style={[styles.container, { backgroundColor }]}>
       <Heading1
         onPress={toggleCaps}
         style={{ marginBottom: 20 }}
@@ -26,8 +26,18 @@ const Menu = ({ navigation }: NavStackProps) => {
       </Heading1>
       <MenuButton onPress={onPressPlay} title="play" />
       <TextButton title="colors" onPress={onPressOptions} />
-    </AppContainer>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+})
 
 export default Menu

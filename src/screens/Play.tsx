@@ -1,22 +1,28 @@
 import React from 'react'
 import PlayerMove from '../components/PlayerMove'
-import GameOptions from '../components/GameOptions'
-import { AppContainer, MiniContain } from '../components/Layout'
 import SelectMove from '../components/SelectMove'
 import useDesign from '../hooks/useDesign'
+import { StyleSheet, View } from 'react-native'
 
 const Play = () => {
   const { backgroundColor } = useDesign()
 
   return (
-    <AppContainer backgroundColor={backgroundColor}>
-      <MiniContain>
-        <PlayerMove />
-        <SelectMove />
-        <GameOptions />
-      </MiniContain>
-    </AppContainer>
+    <View style={[styles.container, { backgroundColor }]}>
+      <PlayerMove />
+      <SelectMove />
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+})
 
 export default Play
