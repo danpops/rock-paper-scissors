@@ -4,17 +4,22 @@ import { colors } from '../../lib/colors'
 export type DesignState = {
   backgroundColor: string
   fontColor: string
+  capsActive: boolean
 }
 
 export const INITIAL_DESIGN_STATE: DesignState = {
   backgroundColor: colors.default,
   fontColor: colors.white,
+  capsActive: false,
 }
 
 const designSlice = createSlice({
   name: 'design',
   initialState: INITIAL_DESIGN_STATE,
   reducers: {
+    toggleCaps: (state) => {
+      state.capsActive = !state.capsActive
+    },
     setDefault: (state) => {
       state.backgroundColor = INITIAL_DESIGN_STATE.backgroundColor
       state.fontColor = INITIAL_DESIGN_STATE.fontColor
@@ -47,6 +52,7 @@ const designSlice = createSlice({
 })
 
 export const {
+  toggleCaps,
   setDefault,
   setRed,
   setOrange,

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import useDesign from '../../../hooks/useDesign'
-import { Heading5 } from '../../Text'
+import { Heading6 } from '../../Text'
 
 interface TouchableProps {
   onPress: () => void
@@ -20,7 +20,7 @@ const CustomTouchable = styled.TouchableOpacity<TouchableProps>`
   margin-top: 25px;
 `
 
-const TextStyle = styled(Heading5)<TextProps>`
+const TextStyle = styled(Heading6)<TextProps>`
   font-size: 16px;
   text-align: center;
   color: ${({ color }) => color};

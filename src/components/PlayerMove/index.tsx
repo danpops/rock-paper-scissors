@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -10,9 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
-import useEasterTitle from '../../hooks/useEasterTitle'
 import { useAppSelector } from '../../store/hooks'
-import { Column, Row } from '../Layout'
 import { Heading3, Heading6 } from '../Text'
 import MoveIcon from './MoveIcon'
 
@@ -21,7 +19,6 @@ type MoveTypes = {
   playerSelection: string
   flipped: boolean
   shared: number
-  toggleTitle: () => void
   score: number
 }[]
 
@@ -29,18 +26,24 @@ const YOU_TITLE = 'you'
 const COMP_TITLE = 'comp'
 
 const PlayerMove = () => {
-  const { userPlay, compPlay, score, result, selectedMoveBg, moveVisible } =
-    useAppSelector((state) => state.game)
-  const { fontColor: color, backgroundColor } = useDesign()
+  const {
+    userPlay,
+    compPlay,
+    score,
+    result: RESULT_TITLE,
+    selectedMoveBg,
+    moveVisible,
+  } = useAppSelector((state) => state.game)
+  const { fontColor: color, backgroundColor, t } = useDesign()
 
   const move = useSharedValue(0)
   const zindex = useSharedValue(0)
   const scale = useSharedValue(0)
   const text = useSharedValue(1)
 
-  const { title: youTitle, toggleCaps: toggleYou } = useEasterTitle(YOU_TITLE)
-  const { title: compTitle, toggleCaps: toggleComp } =
-    useEasterTitle(COMP_TITLE)
+  const youTitle = t(YOU_TITLE)
+  const compTitle = t(COMP_TITLE)
+  const resultTitle = t(RESULT_TITLE)
 
   const rStyle = useAnimatedStyle(() => {
     return {
@@ -57,7 +60,6 @@ const PlayerMove = () => {
   const moveSelections: MoveTypes = [
     {
       player: youTitle,
-      toggleTitle: toggleYou,
       playerSelection: userPlay,
       flipped: true,
       shared: selectedMoveBg.user,
@@ -65,7 +67,6 @@ const PlayerMove = () => {
     },
     {
       player: compTitle,
-      toggleTitle: toggleComp,
       playerSelection: compPlay,
       flipped: false,
       shared: selectedMoveBg.comp,
@@ -114,35 +115,42 @@ const PlayerMove = () => {
             },
           ]}
         >
-          {result}
+          {resultTitle}
         </Animated.Text>
-        <Row>
+        <View style={styles.row}>
           {moveSelections.map((player, index) => (
             <Animated.View key={index}>
-              <Column>
-                <Heading3 onPress={player.toggleTitle} color={color}>
-                  {player.player}
-                </Heading3>
+              <View style={styles.column}>
+                <Heading3 color={color}>{player.player}</Heading3>
                 <MoveIcon
                   flipped={player.flipped}
                   shared={player.shared}
                   playerSelection={player.playerSelection}
                 />
                 <Heading6 color={color}>{player.score}</Heading6>
-              </Column>
+              </View>
             </Animated.View>
           ))}
-        </Row>
+        </View>
       </Animated.View>
     </>
   )
 }
 
 const styles = StyleSheet.create({
+  column: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 20,
+  },
   resultsContainer: {
     paddingVertical: 5,
     paddingHorizontal: 24,
     position: 'absolute',
+  },
+  row: {
+    flexDirection: 'row',
+    padding: 10,
   },
   text: {
     fontSize: 25,

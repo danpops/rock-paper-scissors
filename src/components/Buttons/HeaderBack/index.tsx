@@ -6,9 +6,11 @@ import { resetGame } from '../../../store/slices/game.reducer'
 import { useNavigation } from '@react-navigation/native'
 import { HeaderBackButtonProps } from '@react-navigation/native-stack/lib/typescript/src/types'
 import { noop } from '../../../lib/constants'
+import useDesign from '../../../hooks/useDesign'
 
 const HeaderBack = (props: HeaderBackButtonProps) => {
   const { goBack } = useNavigation()
+  const { t } = useDesign()
   const dispatch = useAppDispatch()
   const { round } = useAppSelector((state) => state.game)
 
@@ -20,18 +22,20 @@ const HeaderBack = (props: HeaderBackButtonProps) => {
   const backOnPress = async () => {
     if (round > 1) {
       Alert.alert(
-        'Quit Game',
-        'Are you sure you would like to quit the game? All changes will be lost.',
+        t('Quit Game'),
+        t(
+          'Are you sure you would like to quit the game? All changes will be lost.',
+        ),
         [
           {
             onPress: noop,
             style: 'cancel',
-            text: 'Cancel',
+            text: t('Cancel'),
           },
           {
             onPress: exitOnPress,
             style: 'destructive',
-            text: 'Quit',
+            text: t('Quit'),
           },
         ],
       )

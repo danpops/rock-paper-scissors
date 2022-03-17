@@ -7,7 +7,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
-import useEasterTitle from '../../hooks/useEasterTitle'
 import useSelectMove from '../../hooks/useSelectMove'
 import { useAppSelector } from '../../store/hooks'
 import AnimatedHand from '../AnimatedHand'
@@ -16,9 +15,9 @@ import { Heading3 } from '../Text'
 const SELECT_MOVE_TITLE = 'choose your move.'
 
 const SelectMove = () => {
-  const { fontColor } = useDesign()
+  const { fontColor, t } = useDesign()
   const { moveOptions } = useSelectMove()
-  const { title, toggleCaps } = useEasterTitle(SELECT_MOVE_TITLE)
+  const title = t(SELECT_MOVE_TITLE)
   const { moveVisible } = useAppSelector((state) => state.game)
 
   const move = useSharedValue(1)
@@ -47,9 +46,7 @@ const SelectMove = () => {
 
   return (
     <Animated.View style={[styles.moveContainer, rStyle]}>
-      <Heading3 onPress={toggleCaps} color={fontColor}>
-        {title}
-      </Heading3>
+      <Heading3 color={fontColor}>{title}</Heading3>
       <View style={styles.row}>
         {moveOptions.map(({ onSwipe, source, move }, index) => {
           return (

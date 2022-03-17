@@ -9,6 +9,7 @@ import designSlice, {
   setPurple,
   DesignState,
   INITIAL_DESIGN_STATE,
+  toggleCaps,
 } from '../design.reducer'
 
 describe('Design Slice', () => {
@@ -17,6 +18,7 @@ describe('Design Slice', () => {
       const currentState: DesignState = {
         backgroundColor: colors.red,
         fontColor: colors.blue,
+        capsActive: false,
       }
       const action = setDefault()
 
@@ -30,6 +32,7 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.red,
         fontColor: colors.white,
+        capsActive: false,
       }
       const action = setRed()
 
@@ -43,6 +46,7 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.orange,
         fontColor: colors.black,
+        capsActive: false,
       }
       const action = setOrange()
 
@@ -56,6 +60,7 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.yellow,
         fontColor: colors.black,
+        capsActive: false,
       }
       const action = setYellow()
 
@@ -69,6 +74,7 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.green,
         fontColor: colors.white,
+        capsActive: false,
       }
       const action = setGreen()
 
@@ -82,6 +88,7 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.blue,
         fontColor: colors.black,
+        capsActive: false,
       }
       const action = setBlue()
 
@@ -95,12 +102,27 @@ describe('Design Slice', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.purple,
         fontColor: colors.white,
+        capsActive: false,
       }
       const action = setPurple()
 
       const actualResult = designSlice(INITIAL_DESIGN_STATE, action)
 
       expect(actualResult).toEqual(expectedResult)
+    })
+  })
+  describe('toggleCaps', () => {
+    it('should toggle caps true', () => {
+      const action = toggleCaps()
+      const actualResult = designSlice(INITIAL_DESIGN_STATE, action)
+      expect(actualResult.capsActive).toBeTruthy()
+    })
+    it('should toggle caps false', () => {
+      const action = toggleCaps()
+      const initialResult = designSlice(INITIAL_DESIGN_STATE, action)
+      expect(initialResult.capsActive).toBeTruthy()
+      const newResult = designSlice(initialResult, action)
+      expect(newResult.capsActive).toBeFalsy()
     })
   })
 })

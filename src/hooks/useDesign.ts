@@ -7,26 +7,37 @@ import {
   setGreen,
   setBlue,
   setPurple,
+  toggleCaps,
 } from '../store/slices/design.reducer'
+import getTitle from '../utils/getTitle'
 
 const useDesign = () => {
   const dispatch = useAppDispatch()
-  const { backgroundColor, fontColor } = useAppSelector((state) => state.design)
+  const { backgroundColor, fontColor, capsActive } = useAppSelector(
+    (state) => state.design,
+  )
+
+  const toggle = () => dispatch(toggleCaps())
+
+  const title = (title: string) => getTitle(title, capsActive)
 
   const colorOptions = [
-    { title: 'default', dispatchColor: () => dispatch(setDefault()) },
-    { title: 'red', dispatchColor: () => dispatch(setRed()) },
-    { title: 'orange', dispatchColor: () => dispatch(setOrange()) },
-    { title: 'yellow', dispatchColor: () => dispatch(setYellow()) },
-    { title: 'green', dispatchColor: () => dispatch(setGreen()) },
-    { title: 'blue', dispatchColor: () => dispatch(setBlue()) },
-    { title: 'purple', dispatchColor: () => dispatch(setPurple()) },
+    { title: title('default'), dispatchColor: () => dispatch(setDefault()) },
+    { title: title('red'), dispatchColor: () => dispatch(setRed()) },
+    { title: title('orange'), dispatchColor: () => dispatch(setOrange()) },
+    { title: title('yellow'), dispatchColor: () => dispatch(setYellow()) },
+    { title: title('green'), dispatchColor: () => dispatch(setGreen()) },
+    { title: title('blue'), dispatchColor: () => dispatch(setBlue()) },
+    { title: title('purple'), dispatchColor: () => dispatch(setPurple()) },
   ]
 
   return {
     backgroundColor,
     colorOptions,
     fontColor,
+    capsActive,
+    t: title,
+    toggleCaps: toggle,
   }
 }
 

@@ -1,4 +1,3 @@
-import { Alert } from 'react-native'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { getComputerMove } from '../utils/computerMove'
 import { rockPaperScissorsCheck } from '../utils/rockPaperScissorsCheck'
@@ -17,11 +16,6 @@ const useRockPaperScissors = () => {
   const { compPlay, userPlay } = useAppSelector((state) => state.game)
 
   const onChallenge = async () => {
-    // if (userPlay === '?') {
-    //   Alert.alert('Please select a move.')
-    //   return
-    // }
-
     if (userPlay !== '?' && compPlay !== '?') {
       const tempUser = userPlay
       await dispatch(clearMove())
