@@ -19,6 +19,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.red,
         fontColor: colors.blue,
         capsActive: false,
+        glowColor: colors.white,
       }
       const action = setDefault()
 
@@ -33,6 +34,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.red,
         fontColor: colors.white,
         capsActive: false,
+        glowColor: colors.white,
       }
       const action = setRed()
 
@@ -47,6 +49,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.orange,
         fontColor: colors.black,
         capsActive: false,
+        glowColor: colors.black,
       }
       const action = setOrange()
 
@@ -61,6 +64,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.yellow,
         fontColor: colors.black,
         capsActive: false,
+        glowColor: colors.black,
       }
       const action = setYellow()
 
@@ -75,6 +79,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.green,
         fontColor: colors.white,
         capsActive: false,
+        glowColor: colors.black,
       }
       const action = setGreen()
 
@@ -89,6 +94,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.blue,
         fontColor: colors.black,
         capsActive: false,
+        glowColor: colors.black,
       }
       const action = setBlue()
 
@@ -103,6 +109,7 @@ describe('Design Slice', () => {
         backgroundColor: colors.purple,
         fontColor: colors.white,
         capsActive: false,
+        glowColor: colors.white,
       }
       const action = setPurple()
 
