@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
+import { AppTitles } from '../../lib/titles'
 import { useAppSelector } from '../../store/hooks'
 import MoveIcon from './MoveIcon'
 
@@ -21,9 +22,7 @@ type MoveTypes = {
   score: number
 }[]
 
-const COMP_TITLE = 'cpu'
-
-const PlayerMove = () => {
+const GameResult = () => {
   const {
     userPlay,
     compPlay,
@@ -41,7 +40,7 @@ const PlayerMove = () => {
   const text = useSharedValue(1)
 
   const youTitle = t(YOU_TITLE)
-  const compTitle = t(COMP_TITLE)
+  const compTitle = t(AppTitles.COMP_TITLE)
   const resultTitle = t(RESULT_TITLE)
 
   const rStyle = useAnimatedStyle(() => {
@@ -163,4 +162,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PlayerMove
+export default GameResult

@@ -1,4 +1,5 @@
 import { colors } from '../lib/colors'
+import { getRandomNumber } from './getRandomNumber'
 
 export const getRandomColor = () => {
   return (
@@ -15,6 +16,6 @@ export const getRandomColor = () => {
       9: colors.success,
       10: colors.white,
       11: colors.yellow,
-    }[Math.floor(Math.random() * 12)] || 'black'
+    }[getRandomNumber(12)] || 'black'
   )
 }

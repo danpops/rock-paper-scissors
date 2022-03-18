@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { DefaultGameValues } from '../../lib/constants'
+import { AppTitles } from '../../lib/titles'
 
 type PlayerType = {
   user: number
@@ -20,15 +22,15 @@ export const INITIAL_GAME_STATE: GameState = {
   userPlay: '?',
   compPlay: '?',
   result: '',
-  username: 'you',
+  username: AppTitles.DEFAULT_USER_TITLE,
   selectedMoveBg: {
-    user: 1,
-    comp: 1,
+    user: DefaultGameValues.WHITE_BG,
+    comp: DefaultGameValues.WHITE_BG,
   },
-  round: 1,
+  round: DefaultGameValues.ROUND,
   score: {
-    user: 0,
-    comp: 0,
+    user: DefaultGameValues.SCORE,
+    comp: DefaultGameValues.SCORE,
   },
   moveVisible: false,
 }
@@ -53,8 +55,8 @@ const gameSlice = createSlice({
       state.compPlay = '?'
       state.userPlay = '?'
       state.selectedMoveBg = {
-        user: 1,
-        comp: 1,
+        user: DefaultGameValues.WHITE_BG,
+        comp: DefaultGameValues.WHITE_BG,
       }
       state.moveVisible = false
     },
@@ -62,48 +64,47 @@ const gameSlice = createSlice({
       state.userPlay = '?'
       state.compPlay = '?'
       state.score = {
-        user: 0,
-        comp: 0,
+        user: DefaultGameValues.SCORE,
+        comp: DefaultGameValues.SCORE,
       }
       state.selectedMoveBg = {
-        user: 1,
-        comp: 1,
+        user: DefaultGameValues.WHITE_BG,
+        comp: DefaultGameValues.WHITE_BG,
       }
-      state.round = 1
+      state.round = DefaultGameValues.ROUND
       state.moveVisible = false
     },
     userWins: (state) => {
-      state.round += 1
-      state.score.user += 1
-      state.result = 'you win!'
+      state.round += DefaultGameValues.ROUND
+      state.score.user += DefaultGameValues.ROUND
+      state.result = AppTitles.RESULT_WIN
       state.selectedMoveBg = {
-        user: 0,
-        comp: 2,
+        user: DefaultGameValues.GREEN_BG,
+        comp: DefaultGameValues.RED_BG,
       }
     },
     compWins: (state) => {
-      state.round += 1
-      state.score.comp += 1
-      state.result = 'you lose!'
+      state.round += DefaultGameValues.ROUND
+      state.score.comp += DefaultGameValues.ROUND
+      state.result = AppTitles.RESULT_LOSE
       state.selectedMoveBg = {
-        user: 2,
-        comp: 0,
+        user: DefaultGameValues.RED_BG,
+        comp: DefaultGameValues.GREEN_BG,
       }
     },
     draw: (state) => {
-      state.round += 1
-      state.result = 'tie game.'
+      state.round += DefaultGameValues.ROUND
+      state.result = AppTitles.RESULT_DRAW
       state.selectedMoveBg = {
-        user: 1,
-        comp: 1,
+        user: DefaultGameValues.WHITE_BG,
+        comp: DefaultGameValues.WHITE_BG,
       }
     },
     playNewGame: (state, action: PayloadAction<string>) => {
       state.compPlay = '?'
-
       state.selectedMoveBg = {
-        user: 1,
-        comp: 1,
+        user: DefaultGameValues.WHITE_BG,
+        comp: DefaultGameValues.WHITE_BG,
       }
       state.userPlay = action.payload
       state.moveVisible = false

@@ -4,10 +4,7 @@ import MenuButton from '../components/Buttons/MenuButton'
 import TextButton from '../components/Buttons/TextButton'
 import useDesign from '../hooks/useDesign'
 import useUsername from '../hooks/useUsername'
-
-const COLORS_TITLE = 'options'
-const CAPS_TITLE = 'caps'
-const USERNAME_PLACEHOLDER = 'username...'
+import { AppTitles } from '../lib/titles'
 
 const Options: React.FC = () => {
   const {
@@ -19,9 +16,9 @@ const Options: React.FC = () => {
   } = useDesign()
   const { onChangeUser, onSubmitUser, user } = useUsername()
 
-  const title = t(COLORS_TITLE)
-  const capsTitle = t(CAPS_TITLE)
-  const usernameTitle = t(USERNAME_PLACEHOLDER)
+  const title = t(AppTitles.OPTIONS_TITLE)
+  const capsTitle = t(AppTitles.CAPS_TITLE)
+  const usernameTitle = t(AppTitles.USERNAME_PLACEHOLDER)
 
   const onPressCaps = () => toggleCaps()
 

@@ -7,16 +7,15 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
-import useSelectMove from '../../hooks/useSelectMove'
+import useRockPaperScissors from '../../hooks/useRockPaperScissors'
+import { AppTitles } from '../../lib/titles'
 import { useAppSelector } from '../../store/hooks'
-import AnimatedHand from '../AnimatedHand'
-
-const SELECT_MOVE_TITLE = 'choose your move.'
+import AnimatedHand from '../Buttons/AnimatedHand'
 
 const SelectMove = () => {
   const { fontColor: color, t } = useDesign()
-  const { moveOptions } = useSelectMove()
-  const title = t(SELECT_MOVE_TITLE)
+  const { moveOptions } = useRockPaperScissors()
+  const title = t(AppTitles.SELECT_MOVE_TITLE)
   const { moveVisible } = useAppSelector((state) => state.game)
 
   const move = useSharedValue(1)

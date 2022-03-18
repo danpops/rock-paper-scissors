@@ -1,5 +1,5 @@
 import React from 'react'
-import PlayerMove from '../components/PlayerMove'
+import GameResult from '../components/GameResult'
 import SelectMove from '../components/SelectMove'
 import useDesign from '../hooks/useDesign'
 import { StyleSheet, View } from 'react-native'
@@ -9,7 +9,7 @@ const Play = () => {
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <PlayerMove />
+      <GameResult />
       <SelectMove />
     </View>
   )

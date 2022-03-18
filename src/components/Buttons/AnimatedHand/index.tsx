@@ -15,8 +15,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated'
-import useDesign from '../../hooks/useDesign'
-import useRockPaperScissors from '../../hooks/useRockPaperScissors'
+import useDesign from '../../../hooks/useDesign'
+import useRockPaperScissors from '../../../hooks/useRockPaperScissors'
 
 type ContextType = {
   translateX: number

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { colors } from '../../lib/colors'
-import { getRandomColor } from '../../utils/getRandomHex'
+import { getRandomColor } from '../../utils/getRandomColor'
 
 export type DesignState = {
   backgroundColor: string
