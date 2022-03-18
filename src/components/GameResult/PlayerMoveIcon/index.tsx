@@ -22,7 +22,7 @@ type MoveIconProps = {
   flipped: boolean
 }
 
-const MoveIcon = ({
+const PlayerMoveIcon = ({
   playerSelection,
   shared = 1,
   flipped = false,
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default MoveIcon
+export default PlayerMoveIcon

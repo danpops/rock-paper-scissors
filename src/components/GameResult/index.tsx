@@ -12,7 +12,7 @@ import Animated, {
 import useDesign from '../../hooks/useDesign'
 import { AppTitles } from '../../lib/titles'
 import { useAppSelector } from '../../store/hooks'
-import MoveIcon from './MoveIcon'
+import PlayerMoveIcon from './PlayerMoveIcon'
 
 type MoveTypes = {
   player: string
@@ -122,7 +122,7 @@ const GameResult = () => {
                 <Text style={[styles.heading3, { color }]}>
                   {player.player}
                 </Text>
-                <MoveIcon
+                <PlayerMoveIcon
                   flipped={player.flipped}
                   shared={player.shared}
                   playerSelection={player.playerSelection}
