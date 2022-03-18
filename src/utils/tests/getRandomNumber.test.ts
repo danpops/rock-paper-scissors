@@ -14,8 +14,8 @@ describe('getRandomNumber', () => {
   })
 
   it('should return a number between 0-100', () => {
-    const number = getRandomNumber(1)
-    const isCorrectValue = number <= 0 && number <= 100
+    const number = getRandomNumber(100)
+    const isCorrectValue = number >= 0 && number <= 100
     expect(isCorrectValue).toBeTruthy()
   })
 })
