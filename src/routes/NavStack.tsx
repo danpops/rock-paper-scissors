@@ -6,7 +6,7 @@ import {
 import Menu from '../screens/Menu'
 import Play from '../screens/Play'
 import { NavStackParamsType } from './types/route.type'
-import Colors from '../screens/Colors'
+import Options from '../screens/Options'
 import useDesign from '../hooks/useDesign'
 import { StatusBar } from 'react-native'
 import HeaderBack from '../components/Buttons/HeaderBack'
@@ -37,8 +37,8 @@ const NavStack = () => {
           }}
         />
         <Stack.Screen
-          name="Colors"
-          component={Colors}
+          name="Options"
+          component={Options}
           options={{
             headerBackTitle: '',
           }}

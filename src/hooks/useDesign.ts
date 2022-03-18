@@ -8,6 +8,7 @@ import {
   setBlue,
   setPurple,
   toggleCaps,
+  setRandom,
 } from '../store/slices/design.reducer'
 import getTitle from '../utils/getTitle'
 
@@ -23,6 +24,7 @@ const useDesign = () => {
 
   const colorOptions = [
     { title: title('default'), dispatchColor: () => dispatch(setDefault()) },
+    { title: title('random'), dispatchColor: () => dispatch(setRandom()) },
     { title: title('red'), dispatchColor: () => dispatch(setRed()) },
     { title: title('orange'), dispatchColor: () => dispatch(setOrange()) },
     { title: title('yellow'), dispatchColor: () => dispatch(setYellow()) },

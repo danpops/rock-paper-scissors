@@ -1,11 +1,10 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import MenuButton from '../components/Buttons/MenuButton'
 import TextButton from '../components/Buttons/TextButton'
-import { Heading1 } from '../components/Text'
 import useDesign from '../hooks/useDesign'
 
-const COLORS_TITLE = 'colors'
+const COLORS_TITLE = 'options'
 const CAPS_TITLE = 'caps'
 
 const Options: React.FC = () => {
@@ -18,14 +17,17 @@ const Options: React.FC = () => {
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <Heading1 color={fontColor}>{title}</Heading1>
-      {colorOptions.map((button, index) => (
-        <MenuButton
-          key={index}
-          title={button.title}
-          onPress={button.dispatchColor}
-        />
-      ))}
+      <Text style={[styles.heading1, { color: fontColor }]}>{title}</Text>
+      <View style={styles.row}>
+        {colorOptions.map((button, index) => (
+          <MenuButton
+            key={index}
+            title={button.title}
+            onPress={button.dispatchColor}
+            style={{ margin: 10 }}
+          />
+        ))}
+      </View>
       <TextButton title={capsTitle} onPress={onPressCaps} />
     </View>
   )
@@ -38,6 +40,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
+  heading1: {
+    fontSize: 80,
+    fontWeight: '100',
+    marginBottom: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

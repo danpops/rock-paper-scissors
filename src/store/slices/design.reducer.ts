@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { colors } from '../../lib/colors'
+import { getRandomColor } from '../../utils/getRandomHex'
 
 export type DesignState = {
   backgroundColor: string
@@ -23,6 +24,10 @@ const designSlice = createSlice({
     setDefault: (state) => {
       state.backgroundColor = INITIAL_DESIGN_STATE.backgroundColor
       state.fontColor = INITIAL_DESIGN_STATE.fontColor
+    },
+    setRandom: (state) => {
+      state.backgroundColor = getRandomColor()
+      state.fontColor = getRandomColor()
     },
     setRed: (state) => {
       state.backgroundColor = colors.red
@@ -54,6 +59,7 @@ const designSlice = createSlice({
 export const {
   toggleCaps,
   setDefault,
+  setRandom,
   setRed,
   setOrange,
   setYellow,

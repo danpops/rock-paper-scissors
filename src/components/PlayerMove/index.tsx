@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -11,7 +11,6 @@ import Animated, {
 } from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
 import { useAppSelector } from '../../store/hooks'
-import { Heading3, Heading6 } from '../Text'
 import MoveIcon from './MoveIcon'
 
 type MoveTypes = {
@@ -23,7 +22,7 @@ type MoveTypes = {
 }[]
 
 const YOU_TITLE = 'you'
-const COMP_TITLE = 'comp'
+const COMP_TITLE = 'cpu'
 
 const PlayerMove = () => {
   const {
@@ -121,13 +120,15 @@ const PlayerMove = () => {
           {moveSelections.map((player, index) => (
             <Animated.View key={index}>
               <View style={styles.column}>
-                <Heading3 color={color}>{player.player}</Heading3>
+                <Text style={[styles.heading3, { color }]}>
+                  {player.player}
+                </Text>
                 <MoveIcon
                   flipped={player.flipped}
                   shared={player.shared}
                   playerSelection={player.playerSelection}
                 />
-                <Heading6 color={color}>{player.score}</Heading6>
+                <Text style={[styles.heading6, { color }]}>{player.score}</Text>
               </View>
             </Animated.View>
           ))}
@@ -143,6 +144,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+  heading3: { fontSize: 24, fontWeight: '400' },
+  heading6: { fontSize: 30, fontWeight: '400' },
   resultsContainer: {
     paddingVertical: 5,
     paddingHorizontal: 24,

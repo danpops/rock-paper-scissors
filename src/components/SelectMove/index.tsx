@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -10,12 +10,11 @@ import useDesign from '../../hooks/useDesign'
 import useSelectMove from '../../hooks/useSelectMove'
 import { useAppSelector } from '../../store/hooks'
 import AnimatedHand from '../AnimatedHand'
-import { Heading3 } from '../Text'
 
 const SELECT_MOVE_TITLE = 'choose your move.'
 
 const SelectMove = () => {
-  const { fontColor, t } = useDesign()
+  const { fontColor: color, t } = useDesign()
   const { moveOptions } = useSelectMove()
   const title = t(SELECT_MOVE_TITLE)
   const { moveVisible } = useAppSelector((state) => state.game)
@@ -46,7 +45,6 @@ const SelectMove = () => {
 
   return (
     <Animated.View style={[styles.moveContainer, rStyle]}>
-      <Heading3 color={fontColor}>{title}</Heading3>
       <View style={styles.row}>
         {moveOptions.map(({ onSwipe, source, move }, index) => {
           return (
@@ -59,6 +57,7 @@ const SelectMove = () => {
           )
         })}
       </View>
+      <Text style={[styles.text, { color }]}>{title}</Text>
     </Animated.View>
   )
 }
@@ -75,6 +74,10 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     padding: 10,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: '400',
   },
 })
 
