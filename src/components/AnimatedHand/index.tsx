@@ -34,6 +34,7 @@ const AnimatedHand = (props: AnimatedHandInterface) => {
 
   const translateX = useSharedValue(0)
   const translateY = useSharedValue(0)
+  const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2)
 
   const panGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
@@ -45,7 +46,6 @@ const AnimatedHand = (props: AnimatedHandInterface) => {
     },
     onActive: (event, context) => {
       runOnJS(onSwipe)()
-      const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2)
       if (distance > SIZE + 8) {
         runOnJS(setActive)(true)
       } else {
@@ -55,7 +55,6 @@ const AnimatedHand = (props: AnimatedHandInterface) => {
       translateY.value = event.translationY + context.translateY
     },
     onEnd: () => {
-      const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2)
       if (distance > SIZE + 8) {
         runOnJS(onChallenge)()
       }
