@@ -14,7 +14,7 @@ import getTitle from '../utils/getTitle'
 
 const useDesign = () => {
   const dispatch = useAppDispatch()
-  const { backgroundColor, fontColor, capsActive } = useAppSelector(
+  const { backgroundColor, fontColor, capsActive, glowColor } = useAppSelector(
     (state) => state.design,
   )
 
@@ -38,6 +38,7 @@ const useDesign = () => {
     colorOptions,
     fontColor,
     capsActive,
+    glowColor,
     t: title,
     toggleCaps: toggle,
   }

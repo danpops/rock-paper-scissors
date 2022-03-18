@@ -45,6 +45,7 @@ const SelectMove = () => {
 
   return (
     <Animated.View style={[styles.moveContainer, rStyle]}>
+      <Text style={[styles.text, { color }]}>{title}</Text>
       <View style={styles.row}>
         {moveOptions.map(({ onSwipe, source, move }, index) => {
           return (
@@ -57,7 +58,6 @@ const SelectMove = () => {
           )
         })}
       </View>
-      <Text style={[styles.text, { color }]}>{title}</Text>
     </Animated.View>
   )
 }
