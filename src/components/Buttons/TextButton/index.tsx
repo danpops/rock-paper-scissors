@@ -27,7 +27,7 @@ const TextButton = (props: TouchableProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 25,
+    marginTop: 20,
   },
   text: {
     fontSize: 16,

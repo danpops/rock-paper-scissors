@@ -27,8 +27,8 @@ const MenuButton = (props: ButtonProps) => {
 const styles = StyleSheet.create({
   container: {
     shadowOffset: {
-      width: 0,
-      height: 8,
+      width: 2,
+      height: 3,
     },
     shadowRadius: 8,
     shadowOpacity: 0.1,

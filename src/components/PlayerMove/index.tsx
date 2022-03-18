@@ -21,7 +21,6 @@ type MoveTypes = {
   score: number
 }[]
 
-const YOU_TITLE = 'you'
 const COMP_TITLE = 'cpu'
 
 const PlayerMove = () => {
@@ -32,6 +31,7 @@ const PlayerMove = () => {
     result: RESULT_TITLE,
     selectedMoveBg,
     moveVisible,
+    username: YOU_TITLE,
   } = useAppSelector((state) => state.game)
   const { fontColor: color, backgroundColor, t } = useDesign()
 

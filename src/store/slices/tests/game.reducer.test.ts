@@ -8,6 +8,7 @@ import gameSlice, {
   GameState,
   INITIAL_GAME_STATE,
   setUserPlay,
+  setUsername,
 } from '../game.reducer'
 
 describe('Game Slice', () => {
@@ -18,6 +19,7 @@ describe('Game Slice', () => {
       const expectedResult: GameState = {
         userPlay: '?',
         compPlay: 'R',
+        username: 'you',
         score: {
           user: 0,
           comp: 0,
@@ -42,6 +44,7 @@ describe('Game Slice', () => {
       const expectedResult: GameState = {
         userPlay: 'P',
         compPlay: '?',
+        username: 'you',
         score: {
           user: 0,
           comp: 0,
@@ -64,6 +67,7 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'S',
+        username: 'you',
         score: {
           user: 1,
           comp: 5,
@@ -87,6 +91,7 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'S',
+        username: 'you',
         score: {
           user: 2,
           comp: 4,
@@ -117,6 +122,7 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'P',
         compPlay: 'S',
+        username: 'you',
         score: {
           user: 3,
           comp: 4,
@@ -146,6 +152,7 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'R',
         compPlay: 'R',
+        username: 'you',
         score: {
           user: 2,
           comp: 2,
@@ -175,6 +182,7 @@ describe('Game Slice', () => {
       const currentState: GameState = {
         userPlay: 'P',
         compPlay: 'S',
+        username: 'you',
         score: {
           user: 2,
           comp: 4,
@@ -196,6 +204,31 @@ describe('Game Slice', () => {
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)
+    })
+  })
+
+  describe('setUsername', () => {
+    it('should update username', () => {
+      const testUsername = 'testing'
+      const action = setUsername(testUsername)
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      const expectedResult: GameState = {
+        userPlay: '?',
+        compPlay: '?',
+        username: testUsername,
+        score: {
+          user: 0,
+          comp: 0,
+        },
+        result: '',
+        moveVisible: false,
+        selectedMoveBg: {
+          user: 1,
+          comp: 1,
+        },
+        round: 1,
+      }
+      expect(expectedResult).toStrictEqual(actualResult)
     })
   })
 })

@@ -13,12 +13,14 @@ export type GameState = {
   selectedMoveBg: PlayerType
   round: number
   moveVisible: boolean
+  username: string
 }
 
 export const INITIAL_GAME_STATE: GameState = {
   userPlay: '?',
   compPlay: '?',
   result: '',
+  username: 'you',
   selectedMoveBg: {
     user: 1,
     comp: 1,
@@ -35,6 +37,9 @@ const gameSlice = createSlice({
   name: 'game',
   initialState: INITIAL_GAME_STATE,
   reducers: {
+    setUsername: (state, action: PayloadAction<string>) => {
+      state.username = action.payload
+    },
     setCompPlay: (state, action: PayloadAction<string>) => {
       state.compPlay = action.payload
     },
@@ -110,6 +115,7 @@ export const {
   userWins,
   compWins,
   clearMove,
+  setUsername,
   draw,
   setCompPlay,
   playNewGame,
