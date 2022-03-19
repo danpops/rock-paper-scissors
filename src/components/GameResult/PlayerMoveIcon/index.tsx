@@ -1,18 +1,11 @@
 import React from 'react'
 import { Pressable, StyleSheet } from 'react-native'
-import Animated, {
-  BounceIn,
-  BounceOut,
-  interpolateColor,
-  useAnimatedStyle,
-  useDerivedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated'
+import Animated, { BounceIn, BounceOut } from 'react-native-reanimated'
 import { colors } from '../../../lib/colors'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { clearMove } from '../../../store/slices/game.reducer'
 import getPlayerMoveIcon from '../../../utils/imageDictionary'
+import usePlayerMoveIconAnimation from './animations/usePlayerMoveIconAnimation'
 
 const SELECTING_MOVE = '?'
 
@@ -28,24 +21,12 @@ const PlayerMoveIcon = ({
   flipped = false,
 }: MoveIconProps) => {
   const { userPlay, compPlay } = useAppSelector((state) => state.game)
+  const { backgroundStyle } = usePlayerMoveIconAnimation(shared)
   const dispatch = useAppDispatch()
   const showMove = userPlay !== SELECTING_MOVE && compPlay !== SELECTING_MOVE
   const icon = getPlayerMoveIcon(playerSelection)
+
   const onClear = () => dispatch(clearMove())
-
-  const progress = useDerivedValue(() => {
-    return withDelay(250, withTiming(shared))
-  })
-
-  const backgroundStyle = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(
-      progress.value,
-      [0, 1, 2],
-      [colors.success, colors.lightGray, colors.error],
-    )
-
-    return { backgroundColor }
-  })
 
   return (
     <Animated.View
