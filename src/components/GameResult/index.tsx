@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import Animated from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
 import useGameResultAnimation from './animations/useGameResultAnimation'
-import PlayerMoveIcon from './PlayerMoveIcon'
+import PlayerMoveIcon from './components/PlayerMoveIcon'
 
 const GameResult = () => {
   const { fontColor: color, backgroundColor } = useDesign()

@@ -5,7 +5,7 @@ import { colors } from '../../../lib/colors'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { clearMove } from '../../../store/slices/game.reducer'
 import getPlayerMoveIcon from '../../../utils/imageDictionary'
-import usePlayerMoveIconAnimation from './animations/usePlayerMoveIconAnimation'
+import usePlayerMoveIconAnimation from '../animations/usePlayerMoveIconAnimation'
 
 const SELECTING_MOVE = '?'
 

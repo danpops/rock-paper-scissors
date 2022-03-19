@@ -5,7 +5,7 @@ import {
   useAnimatedStyle,
   interpolateColor,
 } from 'react-native-reanimated'
-import { colors } from '../../../../lib/colors'
+import { colors } from '../../../lib/colors'
 
 const usePlayerMoveIconAnimation = (shared: number) => {
   const progress = useDerivedValue(() => {
