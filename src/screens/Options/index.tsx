@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import MenuButton from '../components/Buttons/MenuButton'
-import TextButton from '../components/Buttons/TextButton'
-import useDesign from '../hooks/useDesign'
-import useUsername from '../hooks/useUsername'
-import { AppTitles } from '../lib/titles'
+import MenuButton from '../../components/Buttons/MenuButton'
+import TextButton from '../../components/Buttons/TextButton'
+import useDesign from '../../hooks/useDesign'
+import useUsername from '../../hooks/useUsername'
+import { AppTitles } from '../../lib/titles'
 
 const Options: React.FC = () => {
   const {

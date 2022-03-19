@@ -3,13 +3,13 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack'
-import Menu from '../screens/Menu'
-import Play from '../screens/Play'
-import { NavStackParamsType } from './types/route.type'
-import Options from '../screens/Options'
-import useDesign from '../hooks/useDesign'
+import Menu from '../../screens/Menu'
+import Play from '../../screens/Play'
+import { NavStackParamsType } from '../types/route.type'
+import Options from '../../screens/Options'
+import useDesign from '../../hooks/useDesign'
 import { StatusBar } from 'react-native'
-import HeaderBack from '../components/Buttons/HeaderBack'
+import HeaderBack from '../../components/Buttons/HeaderBack'
 
 const Stack = createNativeStackNavigator<NavStackParamsType>()
 

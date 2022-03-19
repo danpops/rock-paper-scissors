@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import MenuButton from '../components/Buttons/MenuButton'
-import TextButton from '../components/Buttons/TextButton'
-import useDesign from '../hooks/useDesign'
-import { AppTitles } from '../lib/titles'
-import { NavStackProps } from '../routes/types/route.type'
+import MenuButton from '../../components/Buttons/MenuButton'
+import TextButton from '../../components/Buttons/TextButton'
+import useDesign from '../../hooks/useDesign'
+import { AppTitles } from '../../lib/titles'
+import { NavStackProps } from '../../routes/types/route.type'
 
 const Menu = ({ navigation }: NavStackProps) => {
   const { backgroundColor, t, fontColor } = useDesign()
