@@ -10,8 +10,13 @@ import Options from '../../screens/Options'
 import useDesign from '../../hooks/useDesign'
 import { StatusBar } from 'react-native'
 import HeaderBack from '../../components/Buttons/HeaderBack'
+import { HeaderBackButtonProps } from '@react-navigation/native-stack/lib/typescript/src/types'
 
 const Stack = createNativeStackNavigator<NavStackParamsType>()
+
+const HeaderLeftPlay = (props: HeaderBackButtonProps) => (
+  <HeaderBack {...props} />
+)
 
 const NavStack = () => {
   const { fontColor } = useDesign()
@@ -19,8 +24,7 @@ const NavStack = () => {
   const screenOptionStyle: NativeStackNavigationOptions = {
     headerTransparent: true,
     headerTintColor: fontColor,
-    headerShown: true,
-    headerTitle: '',
+    headerShown: false,
   }
 
   return (
@@ -33,15 +37,15 @@ const NavStack = () => {
           component={Play}
           options={{
             gestureEnabled: false,
-            headerLeft: (props) => <HeaderBack {...props} />,
+            headerLeft: HeaderLeftPlay,
+            headerShown: true,
+            headerTitle: '',
           }}
         />
         <Stack.Screen
           name="Options"
           component={Options}
-          options={{
-            headerBackTitle: '',
-          }}
+          options={{ headerBackTitleVisible: false }}
         />
       </Stack.Navigator>
     </>
