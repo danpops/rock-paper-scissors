@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { colors } from '../../lib/colors'
 
-export const getStyle = (styleNum: number) => {
+export const getStyle = (styleNum?: number) => {
   return {
     0: textStyles.basic,
     1: textStyles.h1,
@@ -10,7 +10,7 @@ export const getStyle = (styleNum: number) => {
     5: textStyles.h5,
     6: textStyles.h6,
     7: textStyles.small,
-  }[styleNum]
+  }[styleNum || 0]
 }
 
 export const textStyles = StyleSheet.create({
