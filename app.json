@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rockpaperscissors",
+    "name": "Rock Paper Scissors",
     "slug": "rockpaperscissors",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,9 +13,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.danpops.rockpaperscissors"
     },
     "android": {
       "adaptiveIcon": {

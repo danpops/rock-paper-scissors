@@ -16,9 +16,11 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@reduxjs/toolkit": "^1.7.2",
+    "eas-cli": "^0.48.1",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
