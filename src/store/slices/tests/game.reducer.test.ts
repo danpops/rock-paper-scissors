@@ -1,4 +1,5 @@
-import { EMPTY_PLAY } from '../../../lib/constants'
+import { GameMoves } from '../../../lib/constants'
+import { AppTitles } from '../../../lib/titles'
 import gameSlice, {
   setCompPlay,
   resetGame,
@@ -15,12 +16,12 @@ import gameSlice, {
 describe('Game Slice', () => {
   describe('setCompPlay', () => {
     it('should update computer play', () => {
-      const computerPlay = 'R'
+      const computerPlay = GameMoves.ROCK
       const action = setCompPlay(computerPlay)
       const expectedResult: GameState = {
-        userPlay: EMPTY_PLAY,
-        compPlay: 'R',
-        username: 'you',
+        userPlay: GameMoves.EMPTY,
+        compPlay: GameMoves.ROCK,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 0,
           comp: 0,
@@ -40,12 +41,12 @@ describe('Game Slice', () => {
 
   describe('setUserPlay', () => {
     it('should update user play', () => {
-      const userPlay = 'P'
+      const userPlay = GameMoves.PAPER
       const action = setUserPlay(userPlay)
       const expectedResult: GameState = {
-        userPlay: 'P',
-        compPlay: EMPTY_PLAY,
-        username: 'you',
+        userPlay: GameMoves.PAPER,
+        compPlay: GameMoves.EMPTY,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 0,
           comp: 0,
@@ -66,9 +67,9 @@ describe('Game Slice', () => {
   describe('resetGame', () => {
     it('should reset game', () => {
       const currentState: GameState = {
-        userPlay: 'R',
-        compPlay: 'S',
-        username: 'you',
+        userPlay: GameMoves.ROCK,
+        compPlay: GameMoves.SCISSORS,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 1,
           comp: 5,
@@ -90,14 +91,14 @@ describe('Game Slice', () => {
   describe('userWins', () => {
     it('should set user as round winner', () => {
       const currentState: GameState = {
-        userPlay: 'R',
-        compPlay: 'S',
-        username: 'you',
+        userPlay: GameMoves.ROCK,
+        compPlay: GameMoves.SCISSORS,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 2,
           comp: 4,
         },
-        result: 'you win!',
+        result: AppTitles.RESULT_WIN,
         moveVisible: true,
         resultBg: {
           user: 0,
@@ -121,14 +122,14 @@ describe('Game Slice', () => {
   describe('compWins', () => {
     it('should set computer as round winner', () => {
       const currentState: GameState = {
-        userPlay: 'P',
-        compPlay: 'S',
-        username: 'you',
+        userPlay: GameMoves.PAPER,
+        compPlay: GameMoves.SCISSORS,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 3,
           comp: 4,
         },
-        result: 'you lose!',
+        result: AppTitles.RESULT_LOSE,
         moveVisible: true,
         resultBg: {
           user: 2,
@@ -151,14 +152,14 @@ describe('Game Slice', () => {
   describe('draw', () => {
     it('should set round as draw', () => {
       const currentState: GameState = {
-        userPlay: 'R',
-        compPlay: 'R',
-        username: 'you',
+        userPlay: GameMoves.ROCK,
+        compPlay: GameMoves.ROCK,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 2,
           comp: 2,
         },
-        result: 'tie game.',
+        result: AppTitles.RESULT_DRAW,
         moveVisible: false,
         resultBg: {
           user: 1,
@@ -181,9 +182,9 @@ describe('Game Slice', () => {
   describe('playNewGame', () => {
     it('should set new game', () => {
       const currentState: GameState = {
-        userPlay: 'P',
-        compPlay: 'S',
-        username: 'you',
+        userPlay: GameMoves.PAPER,
+        compPlay: GameMoves.SCISSORS,
+        username: AppTitles.USER_DEFAULT_NAME,
         score: {
           user: 2,
           comp: 4,
@@ -196,12 +197,12 @@ describe('Game Slice', () => {
         },
         round: 3,
       }
-      const userPlay = 'P'
+      const userPlay = GameMoves.PAPER
       const action = playNewGame(userPlay)
       const expectedResult = {
         ...currentState,
         userPlay,
-        compPlay: EMPTY_PLAY,
+        compPlay: GameMoves.EMPTY,
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)
@@ -214,8 +215,8 @@ describe('Game Slice', () => {
       const action = setUsername(testUsername)
       const actualResult = gameSlice(INITIAL_GAME_STATE, action)
       const expectedResult: GameState = {
-        userPlay: EMPTY_PLAY,
-        compPlay: EMPTY_PLAY,
+        userPlay: GameMoves.EMPTY,
+        compPlay: GameMoves.EMPTY,
         username: testUsername,
         score: {
           user: 0,

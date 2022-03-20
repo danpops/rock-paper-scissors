@@ -1,10 +1,6 @@
-export const EMPTY_PLAY = '?'
-
-export const validInputs = ['R', 'P', 'S']
-
-export const isRock = (play: string) => play === 'R'
-export const isPaper = (play: string) => play === 'P'
-export const isScissors = (play: string) => play === 'S'
+export const isRock = (play: string) => play === GameMoves.ROCK
+export const isPaper = (play: string) => play === GameMoves.PAPER
+export const isScissors = (play: string) => play === GameMoves.SCISSORS
 
 export const noop = () => null
 
@@ -15,3 +11,23 @@ export enum DefaultGameValues {
   ROUND = 1,
   SCORE = 0,
 }
+
+export enum GameMoves {
+  ROCK = 'R',
+  PAPER = 'P',
+  SCISSORS = 'S',
+  EMPTY = '?',
+}
+
+export enum GameResults {
+  PLAYER_1_WIN = 'P1',
+  PLAYER_2_WIN = 'P2',
+  DRAW = 'D',
+  INVALID = 'Invalid move',
+}
+
+export const VALID_INPUTS = [
+  GameMoves.ROCK,
+  GameMoves.PAPER,
+  GameMoves.SCISSORS,
+]

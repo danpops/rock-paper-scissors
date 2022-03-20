@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { DefaultGameValues, EMPTY_PLAY } from '../../lib/constants'
+import { DefaultGameValues, GameMoves } from '../../lib/constants'
 import { AppTitles } from '../../lib/titles'
 
 type PlayerType = {
@@ -8,7 +8,7 @@ type PlayerType = {
 }
 
 export type GameState = {
-  userPlay: string
+  userPlay: GameMoves
   compPlay: string
   result: string
   score: PlayerType
@@ -19,8 +19,8 @@ export type GameState = {
 }
 
 export const INITIAL_GAME_STATE: GameState = {
-  userPlay: EMPTY_PLAY,
-  compPlay: EMPTY_PLAY,
+  userPlay: GameMoves.EMPTY,
+  compPlay: GameMoves.EMPTY,
   result: '',
   username: AppTitles.DEFAULT_USER_TITLE,
   resultBg: {
@@ -45,15 +45,15 @@ const gameSlice = createSlice({
     setCompPlay: (state, action: PayloadAction<string>) => {
       state.compPlay = action.payload
     },
-    setUserPlay: (state, action: PayloadAction<string>) => {
+    setUserPlay: (state, action: PayloadAction<GameMoves>) => {
       state.userPlay = action.payload
     },
     setVisible: (state, action: PayloadAction<boolean>) => {
       state.moveVisible = action.payload
     },
     clearMove: (state) => {
-      state.compPlay = EMPTY_PLAY
-      state.userPlay = EMPTY_PLAY
+      state.compPlay = GameMoves.EMPTY
+      state.userPlay = GameMoves.EMPTY
       state.resultBg = {
         user: DefaultGameValues.WHITE_BG,
         comp: DefaultGameValues.WHITE_BG,
@@ -61,8 +61,8 @@ const gameSlice = createSlice({
       state.moveVisible = false
     },
     resetGame: (state) => {
-      state.userPlay = EMPTY_PLAY
-      state.compPlay = EMPTY_PLAY
+      state.userPlay = GameMoves.EMPTY
+      state.compPlay = GameMoves.EMPTY
       state.score = {
         user: DefaultGameValues.SCORE,
         comp: DefaultGameValues.SCORE,
@@ -100,8 +100,8 @@ const gameSlice = createSlice({
         comp: DefaultGameValues.WHITE_BG,
       }
     },
-    playNewGame: (state, action: PayloadAction<string>) => {
-      state.compPlay = EMPTY_PLAY
+    playNewGame: (state, action: PayloadAction<GameMoves>) => {
+      state.compPlay = GameMoves.EMPTY
       state.resultBg = {
         user: DefaultGameValues.WHITE_BG,
         comp: DefaultGameValues.WHITE_BG,

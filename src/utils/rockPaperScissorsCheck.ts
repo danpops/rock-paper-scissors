@@ -1,15 +1,24 @@
-import { isPaper, isRock, isScissors, validInputs } from '../lib/constants'
+import {
+  GameMoves,
+  GameResults,
+  isPaper,
+  isRock,
+  isScissors,
+  VALID_INPUTS,
+} from '../lib/constants'
 
-export const rockPaperScissorsCheck = (player1: string, player2: string) => {
-  const validMoveP1 = validInputs.includes(player1)
-  const validMoveP2 = validInputs.includes(player2)
+export const isValidMove = (val: GameMoves) => VALID_INPUTS.includes(val)
 
-  if (!validMoveP1 || !validMoveP2) {
-    return 'Invalid move'
+export const rockPaperScissorsCheck = (
+  player1: GameMoves,
+  player2: GameMoves,
+) => {
+  if (!isValidMove(player1) || !isValidMove(player2)) {
+    return GameResults.INVALID
   }
 
   if (player1 === player2) {
-    return 'D'
+    return GameResults.DRAW
   }
 
   const player1Wins =
@@ -17,5 +26,5 @@ export const rockPaperScissorsCheck = (player1: string, player2: string) => {
     (isPaper(player1) && isRock(player2)) ||
     (isScissors(player1) && isPaper(player2))
 
-  return player1Wins ? 'P1' : 'P2'
+  return player1Wins ? GameResults.PLAYER_1_WIN : GameResults.PLAYER_2_WIN
 }

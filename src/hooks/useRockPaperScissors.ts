@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { getComputerMove } from '../utils/computerMove'
+import { getComputerMove } from '../utils/getComputerMove'
 import { rockPaperScissorsCheck } from '../utils/rockPaperScissorsCheck'
 import {
   setCompPlay,
@@ -12,38 +12,50 @@ import {
   playNewGame,
 } from '../store/slices/game.reducer'
 import getPlayerMoveIcon from '../utils/imageDictionary'
-import { EMPTY_PLAY } from '../lib/constants'
+import { GameMoves, GameResults } from '../lib/constants'
 
 const useRockPaperScissors = () => {
   const dispatch = useAppDispatch()
   const { compPlay, userPlay } = useAppSelector((state) => state.game)
 
-  const onSelectRock = () => dispatch(playNewGame('R'))
-  const onSelectPaper = () => dispatch(playNewGame('P'))
-  const onSelectScissors = () => dispatch(playNewGame('S'))
+  const onSelectRock = () => dispatch(playNewGame(GameMoves.ROCK))
+  const onSelectPaper = () => dispatch(playNewGame(GameMoves.PAPER))
+  const onSelectScissors = () => dispatch(playNewGame(GameMoves.SCISSORS))
 
   const moveOptions = [
-    { onSwipe: onSelectRock, source: getPlayerMoveIcon('R'), move: 'R' },
-    { onSwipe: onSelectPaper, source: getPlayerMoveIcon('P'), move: 'P' },
-    { onSwipe: onSelectScissors, source: getPlayerMoveIcon('S'), move: 'S' },
+    {
+      onSwipe: onSelectRock,
+      source: getPlayerMoveIcon(GameMoves.ROCK),
+      move: GameMoves.ROCK,
+    },
+    {
+      onSwipe: onSelectPaper,
+      source: getPlayerMoveIcon(GameMoves.PAPER),
+      move: GameMoves.PAPER,
+    },
+    {
+      onSwipe: onSelectScissors,
+      source: getPlayerMoveIcon(GameMoves.SCISSORS),
+      move: GameMoves.SCISSORS,
+    },
   ]
 
   const onChallenge = async () => {
-    if (userPlay !== EMPTY_PLAY && compPlay !== EMPTY_PLAY) {
+    if (userPlay !== GameMoves.EMPTY && compPlay !== GameMoves.EMPTY) {
       const tempUser = userPlay
       await dispatch(clearMove())
       await dispatch(setUserPlay(tempUser))
     }
 
-    const computerMove = String(getComputerMove())
+    const computerMove = getComputerMove()
     dispatch(setCompPlay(computerMove))
 
     const result = rockPaperScissorsCheck(userPlay, computerMove)
 
     dispatch(setVisible(true))
 
-    if (result === 'P1') dispatch(userWins())
-    else if (result === 'P2') dispatch(compWins())
+    if (result === GameResults.PLAYER_1_WIN) dispatch(userWins())
+    else if (result === GameResults.PLAYER_2_WIN) dispatch(compWins())
     else dispatch(draw())
   }
 
