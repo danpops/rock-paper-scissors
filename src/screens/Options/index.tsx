@@ -1,10 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import MenuButton from '../../components/Buttons/MenuButton'
 import TextButton from '../../components/Buttons/TextButton'
+import RPSText from '../../components/RPSText'
 import useDesign from '../../hooks/useDesign'
 import useUsername from '../../hooks/useUsername'
 import { AppTitles } from '../../lib/titles'
+import { textStyles } from '../../components/RPSText/styles'
+
+const MAX_USERNAME_LENGTH = 10
 
 const Options: React.FC = () => {
   const {
@@ -24,12 +28,13 @@ const Options: React.FC = () => {
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <Text style={[styles.heading1, { color }]}>{title}</Text>
+      <RPSText text={title} heading={1} color={color} />
       <TextInput
-        style={[styles.heading6, { color }]}
+        style={[textStyles.h5, { color }]}
         value={t(user)}
         onChangeText={onChangeUser}
         onSubmitEditing={onSubmitUser}
+        maxLength={MAX_USERNAME_LENGTH}
         placeholder={usernameTitle}
       />
       <View style={styles.row}>
@@ -58,16 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     flexWrap: 'wrap',
-  },
-  heading1: {
-    fontSize: 80,
-    fontWeight: '100',
-    marginBottom: 20,
-  },
-  heading6: {
-    fontSize: 20,
-    fontWeight: '300',
-    marginBottom: 5,
   },
   row: {
     flexDirection: 'row',

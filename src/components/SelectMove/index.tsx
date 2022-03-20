@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Animated from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
 import useRockPaperScissors from '../../hooks/useRockPaperScissors'
 import { AppTitles } from '../../lib/titles'
 import AnimatedHand from '../Buttons/AnimatedHand'
+import RPSText from '../RPSText'
 import useSelectMoveAnimation from './animations/useSelectMoveAnimation'
 
 const SelectMove = () => {
@@ -16,7 +17,7 @@ const SelectMove = () => {
 
   return (
     <Animated.View style={[styles.moveContainer, rStyle]}>
-      <Text style={[styles.text, { color }]}>{title}</Text>
+      <RPSText text={title} heading={3} color={color} />
       <View style={styles.row}>
         {moveOptions.map(({ onSwipe, source, move }, index) => {
           return (
@@ -45,10 +46,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     padding: 10,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: '400',
   },
 })
 

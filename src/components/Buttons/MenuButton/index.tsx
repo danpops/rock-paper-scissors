@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { colors } from '../../../lib/colors'
+import RPSText from '../../RPSText'
 
 interface ButtonProps {
   onPress: () => void
@@ -19,7 +20,7 @@ const MenuButton = (props: ButtonProps) => {
       disabled={disabled}
       onPress={onPress}
     >
-      <Text style={styles.text}>{title}</Text>
+      <RPSText heading={0} text={title} />
     </TouchableOpacity>
   )
 }
@@ -41,11 +42,6 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     borderWidth: 1,
     backgroundColor: colors.white,
-  },
-  text: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: colors.black,
   },
 })
 

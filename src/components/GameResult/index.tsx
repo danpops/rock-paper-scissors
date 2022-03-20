@@ -1,7 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Animated from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
+import RPSText from '../RPSText'
+import { textStyles } from '../RPSText/styles'
 import useGameResultAnimation from './animations/useGameResultAnimation'
 import PlayerMoveIcon from './components/PlayerMoveIcon'
 
@@ -24,7 +26,7 @@ const GameResult = () => {
       >
         <Animated.Text
           style={[
-            styles.text,
+            textStyles.h2,
             rTextStyle,
             {
               color,
@@ -37,15 +39,13 @@ const GameResult = () => {
           {moveSelections.map((player, index) => (
             <Animated.View key={index}>
               <View style={styles.column}>
-                <Text style={[styles.heading3, { color }]}>
-                  {player.player}
-                </Text>
+                <RPSText text={player.player} heading={3} color={color} />
                 <PlayerMoveIcon
                   flipped={player.flipped}
                   shared={player.shared}
                   playerSelection={player.playerSelection}
                 />
-                <Text style={[styles.heading6, { color }]}>{player.score}</Text>
+                <RPSText text={player.score} heading={6} color={color} />
               </View>
             </Animated.View>
           ))}
@@ -61,8 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  heading3: { fontSize: 24, fontWeight: '400' },
-  heading6: { fontSize: 30, fontWeight: '400' },
   resultsContainer: {
     paddingVertical: 5,
     paddingHorizontal: 24,
@@ -71,12 +69,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     padding: 10,
-  },
-  text: {
-    fontSize: 25,
-    marginBottom: 15,
-    textAlign: 'center',
-    fontWeight: '300',
   },
 })
 
