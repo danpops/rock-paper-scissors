@@ -1,3 +1,5 @@
+export const EMPTY_PLAY = '?'
+
 export const validInputs = ['R', 'P', 'S']
 
 export const isRock = (play: string) => play === 'R'

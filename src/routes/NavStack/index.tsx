@@ -19,11 +19,11 @@ const HeaderLeftPlay = (props: HeaderBackButtonProps) => (
 )
 
 const NavStack = () => {
-  const { fontColor } = useDesign()
-  const status = fontColor === 'white' ? 'light-content' : 'dark-content'
+  const { color } = useDesign()
+  const status = color === 'white' ? 'light-content' : 'dark-content'
   const screenOptionStyle: NativeStackNavigationOptions = {
     headerTransparent: true,
-    headerTintColor: fontColor,
+    headerTintColor: color,
     headerShown: false,
   }
 

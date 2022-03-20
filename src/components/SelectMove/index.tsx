@@ -9,7 +9,7 @@ import RPSText from '../RPSText'
 import useSelectMoveAnimation from './animations/useSelectMoveAnimation'
 
 const SelectMove = () => {
-  const { fontColor: color, t } = useDesign()
+  const { color, t } = useDesign()
   const { moveOptions } = useRockPaperScissors()
   const { rStyle } = useSelectMoveAnimation()
 

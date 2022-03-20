@@ -13,7 +13,7 @@ interface TouchableProps {
 }
 
 const TextButton = (props: TouchableProps) => {
-  const { fontColor: color } = useDesign()
+  const { color } = useDesign()
   const { onPress, title, disabled = false, style = {} } = props
   return (
     <TouchableOpacity

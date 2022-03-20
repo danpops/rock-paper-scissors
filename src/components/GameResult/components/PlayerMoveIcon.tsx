@@ -2,12 +2,11 @@ import React from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 import Animated, { BounceIn, BounceOut } from 'react-native-reanimated'
 import { colors } from '../../../lib/colors'
+import { EMPTY_PLAY } from '../../../lib/constants'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { clearMove } from '../../../store/slices/game.reducer'
 import getPlayerMoveIcon from '../../../utils/imageDictionary'
 import usePlayerMoveIconAnimation from '../animations/usePlayerMoveIconAnimation'
-
-const SELECTING_MOVE = '?'
 
 type MoveIconProps = {
   playerSelection: string
@@ -23,7 +22,7 @@ const PlayerMoveIcon = ({
   const { userPlay, compPlay } = useAppSelector((state) => state.game)
   const { backgroundStyle } = usePlayerMoveIconAnimation(shared)
   const dispatch = useAppDispatch()
-  const showMove = userPlay !== SELECTING_MOVE && compPlay !== SELECTING_MOVE
+  const showMove = userPlay !== EMPTY_PLAY && compPlay !== EMPTY_PLAY
   const icon = getPlayerMoveIcon(playerSelection)
 
   const onClear = () => dispatch(clearMove())

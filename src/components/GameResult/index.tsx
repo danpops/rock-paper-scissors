@@ -8,7 +8,7 @@ import useGameResultAnimation from './animations/useGameResultAnimation'
 import PlayerMoveIcon from './components/PlayerMoveIcon'
 
 const GameResult = () => {
-  const { fontColor: color, backgroundColor } = useDesign()
+  const { color, backgroundColor } = useDesign()
 
   const { rStyle, rTextStyle, moveSelections, resultTitle } =
     useGameResultAnimation()
@@ -42,7 +42,7 @@ const GameResult = () => {
                 <RPSText text={player.player} heading={3} color={color} />
                 <PlayerMoveIcon
                   flipped={player.flipped}
-                  shared={player.shared}
+                  shared={player.resultBg}
                   playerSelection={player.playerSelection}
                 />
                 <RPSText text={player.score} heading={6} color={color} />

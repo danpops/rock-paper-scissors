@@ -4,14 +4,14 @@ import { getRandomColor } from '../../utils/getRandomColor'
 
 export type DesignState = {
   backgroundColor: string
-  fontColor: string
+  color: string
   capsActive: boolean
   glowColor: string
 }
 
 export const INITIAL_DESIGN_STATE: DesignState = {
   backgroundColor: colors.default,
-  fontColor: colors.white,
+  color: colors.white,
   capsActive: false,
   glowColor: colors.white,
 }
@@ -25,42 +25,42 @@ const designSlice = createSlice({
     },
     setDefault: (state) => {
       state.backgroundColor = INITIAL_DESIGN_STATE.backgroundColor
-      state.fontColor = INITIAL_DESIGN_STATE.fontColor
+      state.color = INITIAL_DESIGN_STATE.color
       state.glowColor = INITIAL_DESIGN_STATE.glowColor
     },
     setRandom: (state) => {
       state.backgroundColor = getRandomColor()
-      state.fontColor = getRandomColor()
+      state.color = getRandomColor()
       state.glowColor = getRandomColor()
     },
     setRed: (state) => {
       state.backgroundColor = colors.red
-      state.fontColor = colors.white
+      state.color = colors.white
       state.glowColor = colors.white
     },
     setOrange: (state) => {
       state.backgroundColor = colors.orange
-      state.fontColor = colors.black
+      state.color = colors.black
       state.glowColor = colors.black
     },
     setYellow: (state) => {
       state.backgroundColor = colors.yellow
-      state.fontColor = colors.black
+      state.color = colors.black
       state.glowColor = colors.black
     },
     setGreen: (state) => {
       state.backgroundColor = colors.green
-      state.fontColor = colors.white
+      state.color = colors.white
       state.glowColor = colors.black
     },
     setBlue: (state) => {
       state.backgroundColor = colors.blue
-      state.fontColor = colors.black
+      state.color = colors.black
       state.glowColor = colors.black
     },
     setPurple: (state) => {
       state.backgroundColor = colors.purple
-      state.fontColor = colors.white
+      state.color = colors.white
       state.glowColor = colors.white
     },
   },

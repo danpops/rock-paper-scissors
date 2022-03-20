@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { DefaultGameValues } from '../../lib/constants'
+import { DefaultGameValues, EMPTY_PLAY } from '../../lib/constants'
 import { AppTitles } from '../../lib/titles'
 
 type PlayerType = {
@@ -12,18 +12,18 @@ export type GameState = {
   compPlay: string
   result: string
   score: PlayerType
-  selectedMoveBg: PlayerType
+  resultBg: PlayerType
   round: number
   moveVisible: boolean
   username: string
 }
 
 export const INITIAL_GAME_STATE: GameState = {
-  userPlay: '?',
-  compPlay: '?',
+  userPlay: EMPTY_PLAY,
+  compPlay: EMPTY_PLAY,
   result: '',
   username: AppTitles.DEFAULT_USER_TITLE,
-  selectedMoveBg: {
+  resultBg: {
     user: DefaultGameValues.WHITE_BG,
     comp: DefaultGameValues.WHITE_BG,
   },
@@ -52,22 +52,22 @@ const gameSlice = createSlice({
       state.moveVisible = action.payload
     },
     clearMove: (state) => {
-      state.compPlay = '?'
-      state.userPlay = '?'
-      state.selectedMoveBg = {
+      state.compPlay = EMPTY_PLAY
+      state.userPlay = EMPTY_PLAY
+      state.resultBg = {
         user: DefaultGameValues.WHITE_BG,
         comp: DefaultGameValues.WHITE_BG,
       }
       state.moveVisible = false
     },
     resetGame: (state) => {
-      state.userPlay = '?'
-      state.compPlay = '?'
+      state.userPlay = EMPTY_PLAY
+      state.compPlay = EMPTY_PLAY
       state.score = {
         user: DefaultGameValues.SCORE,
         comp: DefaultGameValues.SCORE,
       }
-      state.selectedMoveBg = {
+      state.resultBg = {
         user: DefaultGameValues.WHITE_BG,
         comp: DefaultGameValues.WHITE_BG,
       }
@@ -78,7 +78,7 @@ const gameSlice = createSlice({
       state.round += DefaultGameValues.ROUND
       state.score.user += DefaultGameValues.ROUND
       state.result = AppTitles.RESULT_WIN
-      state.selectedMoveBg = {
+      state.resultBg = {
         user: DefaultGameValues.GREEN_BG,
         comp: DefaultGameValues.RED_BG,
       }
@@ -87,7 +87,7 @@ const gameSlice = createSlice({
       state.round += DefaultGameValues.ROUND
       state.score.comp += DefaultGameValues.ROUND
       state.result = AppTitles.RESULT_LOSE
-      state.selectedMoveBg = {
+      state.resultBg = {
         user: DefaultGameValues.RED_BG,
         comp: DefaultGameValues.GREEN_BG,
       }
@@ -95,14 +95,14 @@ const gameSlice = createSlice({
     draw: (state) => {
       state.round += DefaultGameValues.ROUND
       state.result = AppTitles.RESULT_DRAW
-      state.selectedMoveBg = {
+      state.resultBg = {
         user: DefaultGameValues.WHITE_BG,
         comp: DefaultGameValues.WHITE_BG,
       }
     },
     playNewGame: (state, action: PayloadAction<string>) => {
-      state.compPlay = '?'
-      state.selectedMoveBg = {
+      state.compPlay = EMPTY_PLAY
+      state.resultBg = {
         user: DefaultGameValues.WHITE_BG,
         comp: DefaultGameValues.WHITE_BG,
       }

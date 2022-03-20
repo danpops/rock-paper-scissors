@@ -1,3 +1,4 @@
+import { EMPTY_PLAY } from '../../../lib/constants'
 import gameSlice, {
   setCompPlay,
   resetGame,
@@ -17,7 +18,7 @@ describe('Game Slice', () => {
       const computerPlay = 'R'
       const action = setCompPlay(computerPlay)
       const expectedResult: GameState = {
-        userPlay: '?',
+        userPlay: EMPTY_PLAY,
         compPlay: 'R',
         username: 'you',
         score: {
@@ -26,7 +27,7 @@ describe('Game Slice', () => {
         },
         result: '',
         moveVisible: false,
-        selectedMoveBg: {
+        resultBg: {
           user: 1,
           comp: 1,
         },
@@ -43,7 +44,7 @@ describe('Game Slice', () => {
       const action = setUserPlay(userPlay)
       const expectedResult: GameState = {
         userPlay: 'P',
-        compPlay: '?',
+        compPlay: EMPTY_PLAY,
         username: 'you',
         score: {
           user: 0,
@@ -51,7 +52,7 @@ describe('Game Slice', () => {
         },
         result: '',
         moveVisible: false,
-        selectedMoveBg: {
+        resultBg: {
           user: 1,
           comp: 1,
         },
@@ -74,7 +75,7 @@ describe('Game Slice', () => {
         },
         result: '',
         moveVisible: false,
-        selectedMoveBg: {
+        resultBg: {
           user: 1,
           comp: 2,
         },
@@ -98,7 +99,7 @@ describe('Game Slice', () => {
         },
         result: 'you win!',
         moveVisible: true,
-        selectedMoveBg: {
+        resultBg: {
           user: 0,
           comp: 2,
         },
@@ -129,7 +130,7 @@ describe('Game Slice', () => {
         },
         result: 'you lose!',
         moveVisible: true,
-        selectedMoveBg: {
+        resultBg: {
           user: 2,
           comp: 0,
         },
@@ -159,7 +160,7 @@ describe('Game Slice', () => {
         },
         result: 'tie game.',
         moveVisible: false,
-        selectedMoveBg: {
+        resultBg: {
           user: 1,
           comp: 1,
         },
@@ -189,7 +190,7 @@ describe('Game Slice', () => {
         },
         result: '',
         moveVisible: false,
-        selectedMoveBg: {
+        resultBg: {
           user: 1,
           comp: 1,
         },
@@ -200,7 +201,7 @@ describe('Game Slice', () => {
       const expectedResult = {
         ...currentState,
         userPlay,
-        compPlay: '?',
+        compPlay: EMPTY_PLAY,
       }
       const actualResult = gameSlice(currentState, action)
       expect(actualResult).toEqual(expectedResult)
@@ -213,8 +214,8 @@ describe('Game Slice', () => {
       const action = setUsername(testUsername)
       const actualResult = gameSlice(INITIAL_GAME_STATE, action)
       const expectedResult: GameState = {
-        userPlay: '?',
-        compPlay: '?',
+        userPlay: EMPTY_PLAY,
+        compPlay: EMPTY_PLAY,
         username: testUsername,
         score: {
           user: 0,
@@ -222,7 +223,7 @@ describe('Game Slice', () => {
         },
         result: '',
         moveVisible: false,
-        selectedMoveBg: {
+        resultBg: {
           user: 1,
           comp: 1,
         },

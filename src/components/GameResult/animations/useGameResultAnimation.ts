@@ -16,7 +16,7 @@ type MoveTypes = {
   player: string
   playerSelection: string
   flipped: boolean
-  shared: number
+  resultBg: number
   score: number
 }[]
 
@@ -28,7 +28,7 @@ const useGameResultAnimation = () => {
     compPlay,
     score,
     result: RESULT_TITLE,
-    selectedMoveBg,
+    resultBg,
     moveVisible,
     username: YOU_TITLE,
   } = useAppSelector((state) => state.game)
@@ -47,14 +47,14 @@ const useGameResultAnimation = () => {
       player: youTitle,
       playerSelection: userPlay,
       flipped: true,
-      shared: selectedMoveBg.user,
+      resultBg: resultBg.user,
       score: score.user,
     },
     {
       player: compTitle,
       playerSelection: compPlay,
       flipped: false,
-      shared: selectedMoveBg.comp,
+      resultBg: resultBg.comp,
       score: score.comp,
     },
   ]

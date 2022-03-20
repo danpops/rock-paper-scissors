@@ -11,13 +11,7 @@ import { textStyles } from '../../components/RPSText/styles'
 const MAX_USERNAME_LENGTH = 10
 
 const Options: React.FC = () => {
-  const {
-    backgroundColor,
-    colorOptions,
-    fontColor: color,
-    t,
-    toggleCaps,
-  } = useDesign()
+  const { backgroundColor, colorOptions, color, t, toggleCaps } = useDesign()
   const { onChangeUser, onSubmitUser, user } = useUsername()
 
   const title = t(AppTitles.OPTIONS_TITLE)

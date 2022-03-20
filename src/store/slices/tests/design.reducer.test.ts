@@ -17,7 +17,7 @@ describe('Design Slice', () => {
     it('should set default color', () => {
       const currentState: DesignState = {
         backgroundColor: colors.red,
-        fontColor: colors.blue,
+        color: colors.blue,
         capsActive: false,
         glowColor: colors.white,
       }
@@ -32,7 +32,7 @@ describe('Design Slice', () => {
     it('should set colors red', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.red,
-        fontColor: colors.white,
+        color: colors.white,
         capsActive: false,
         glowColor: colors.white,
       }
@@ -47,7 +47,7 @@ describe('Design Slice', () => {
     it('should set colors orange', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.orange,
-        fontColor: colors.black,
+        color: colors.black,
         capsActive: false,
         glowColor: colors.black,
       }
@@ -62,7 +62,7 @@ describe('Design Slice', () => {
     it('should set colors yellow', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.yellow,
-        fontColor: colors.black,
+        color: colors.black,
         capsActive: false,
         glowColor: colors.black,
       }
@@ -77,7 +77,7 @@ describe('Design Slice', () => {
     it('should set colors green', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.green,
-        fontColor: colors.white,
+        color: colors.white,
         capsActive: false,
         glowColor: colors.black,
       }
@@ -92,7 +92,7 @@ describe('Design Slice', () => {
     it('should set colors blue', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.blue,
-        fontColor: colors.black,
+        color: colors.black,
         capsActive: false,
         glowColor: colors.black,
       }
@@ -107,7 +107,7 @@ describe('Design Slice', () => {
     it('should set colors purple', () => {
       const expectedResult: DesignState = {
         backgroundColor: colors.purple,
-        fontColor: colors.white,
+        color: colors.white,
         capsActive: false,
         glowColor: colors.white,
       }

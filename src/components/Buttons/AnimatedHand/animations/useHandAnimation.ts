@@ -1,4 +1,5 @@
 import React from 'react'
+import { Dimensions } from 'react-native'
 import { PanGestureHandlerGestureEvent } from 'react-native-gesture-handler'
 import {
   Easing,
@@ -19,7 +20,8 @@ type ContextType = {
   translateY: number
 }
 
-const SIZE = 130.0
+const { height } = Dimensions.get('window')
+const TEN_PERCENT_HEIGHT = height * 0.1
 
 const useHandAnimation = (onSwipe: () => void) => {
   const { onChallenge } = useRockPaperScissors()
@@ -43,7 +45,7 @@ const useHandAnimation = (onSwipe: () => void) => {
     },
     onActive: (event, context) => {
       runOnJS(onSwipe)()
-      if (distance > SIZE + 8) {
+      if (distance > TEN_PERCENT_HEIGHT) {
         runOnJS(setActive)(true)
       } else {
         runOnJS(setActive)(false)
@@ -52,7 +54,7 @@ const useHandAnimation = (onSwipe: () => void) => {
       translateY.value = event.translationY + context.translateY
     },
     onEnd: () => {
-      if (distance > SIZE + 8) {
+      if (distance > TEN_PERCENT_HEIGHT) {
         runOnJS(onChallenge)()
       }
       translateX.value = withSpring(0)

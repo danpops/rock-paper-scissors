@@ -14,7 +14,7 @@ import getTitle from '../utils/getTitle'
 
 const useDesign = () => {
   const dispatch = useAppDispatch()
-  const { backgroundColor, fontColor, capsActive, glowColor } = useAppSelector(
+  const { backgroundColor, color, capsActive, glowColor } = useAppSelector(
     (state) => state.design,
   )
 
@@ -36,7 +36,7 @@ const useDesign = () => {
   return {
     backgroundColor,
     colorOptions,
-    fontColor,
+    color,
     capsActive,
     glowColor,
     t: title,

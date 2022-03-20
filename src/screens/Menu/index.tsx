@@ -8,7 +8,7 @@ import { AppTitles } from '../../lib/titles'
 import { NavStackProps } from '../../routes/types/route.type'
 
 const Menu = ({ navigation }: NavStackProps) => {
-  const { backgroundColor, t, fontColor } = useDesign()
+  const { backgroundColor, t, color } = useDesign()
 
   const rpsTitle = t(AppTitles.RPS_TITLE)
   const playTitle = t(AppTitles.PLAY_TITLE)
@@ -19,7 +19,7 @@ const Menu = ({ navigation }: NavStackProps) => {
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <RPSText text={rpsTitle} heading={1} color={fontColor} />
+      <RPSText text={rpsTitle} heading={1} color={color} />
       <MenuButton title={playTitle} onPress={onPressPlay} />
       <TextButton title={optionsTitle} onPress={onPressOptions} />
     </View>
