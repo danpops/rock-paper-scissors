@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     fontWeight: '100',
     marginBottom: 20,
+    padding: 5,
   },
 })
 

@@ -45,7 +45,11 @@ const NavStack = () => {
         <Stack.Screen
           name="Options"
           component={Options}
-          options={{ headerBackTitleVisible: false }}
+          options={{
+            headerShown: true,
+            headerBackTitle: '',
+            headerTitle: '',
+          }}
         />
       </Stack.Navigator>
     </>

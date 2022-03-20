@@ -6,6 +6,8 @@ import useDesign from '../../hooks/useDesign'
 import useUsername from '../../hooks/useUsername'
 import { AppTitles } from '../../lib/titles'
 
+const MAX_USERNAME_LENGTH = 10
+
 const Options: React.FC = () => {
   const {
     backgroundColor,
@@ -30,6 +32,7 @@ const Options: React.FC = () => {
         value={t(user)}
         onChangeText={onChangeUser}
         onSubmitEditing={onSubmitUser}
+        maxLength={MAX_USERNAME_LENGTH}
         placeholder={usernameTitle}
       />
       <View style={styles.row}>
