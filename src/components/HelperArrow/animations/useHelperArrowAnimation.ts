@@ -36,7 +36,7 @@ const useHelperArrowAnimation = () => {
     helpTranslateY.value = helper
       ? withRepeat(
           withSequence(
-            withTiming(helpTranslateY.value + 90, {
+            withTiming(helpTranslateY.value + 60, {
               duration: 850,
               easing: Easing.ease,
             }),
@@ -50,10 +50,11 @@ const useHelperArrowAnimation = () => {
         )
       : 0
     if (helper) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         opacity.value = withSpring(0)
         dispatch(toggleHelper(false))
       }, 5025)
+      return () => clearTimeout(timeout)
     }
   }, [helper])
 

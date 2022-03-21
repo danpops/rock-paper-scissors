@@ -14,23 +14,34 @@ import {
 } from 'react-native-reanimated'
 import useDesign from '../../../../hooks/useDesign'
 import useRockPaperScissors from '../../../../hooks/useRockPaperScissors'
-import { useAppDispatch } from '../../../../store/hooks'
-import { toggleHelper } from '../../../../store/slices/game.reducer'
+import { GameMoves } from '../../../../lib/constants'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
+import {
+  setUserPlay,
+  toggleHelper,
+} from '../../../../store/slices/game.reducer'
 
 type ContextType = {
   translateX: number
   translateY: number
 }
 
+type HandAnimationProps = {
+  onSwipe: () => void
+  move: string
+}
+
 const { height } = Dimensions.get('window')
 const TEN_PERCENT_HEIGHT = height * 0.1
 
-const useHandAnimation = (onSwipe: () => void) => {
+const useHandAnimation = ({ onSwipe, move }: HandAnimationProps) => {
+  const { userPlay } = useAppSelector((state) => state.game)
   const dispatch = useAppDispatch()
   const { onChallenge } = useRockPaperScissors()
   const { glowColor } = useDesign()
 
   const turnOffHelper = () => dispatch(toggleHelper(false))
+  const setPlayerMoveDefault = () => dispatch(setUserPlay(GameMoves.EMPTY))
 
   const [active, setActive] = React.useState(false)
 
@@ -38,6 +49,8 @@ const useHandAnimation = (onSwipe: () => void) => {
   const translateY = useSharedValue(0)
   const shadowOpacity = useSharedValue(0)
   const shadowRadius = useSharedValue(12)
+
+  const isHandEnabled = userPlay === GameMoves.EMPTY || userPlay === move
 
   const distance = Math.sqrt(translateX.value ** 2 + translateY.value ** 2)
   const panGestureEvent = useAnimatedGestureHandler<
@@ -49,8 +62,8 @@ const useHandAnimation = (onSwipe: () => void) => {
       context.translateY = translateY.value
     },
     onActive: (event, context) => {
-      runOnJS(turnOffHelper)()
       runOnJS(onSwipe)()
+      runOnJS(turnOffHelper)()
       if (distance > TEN_PERCENT_HEIGHT) {
         runOnJS(setActive)(true)
       } else {
@@ -62,6 +75,8 @@ const useHandAnimation = (onSwipe: () => void) => {
     onEnd: () => {
       if (distance > TEN_PERCENT_HEIGHT) {
         runOnJS(onChallenge)()
+      } else {
+        runOnJS(setPlayerMoveDefault)()
       }
       translateX.value = withSpring(0)
       translateY.value = withSpring(0)
@@ -108,10 +123,19 @@ const useHandAnimation = (onSwipe: () => void) => {
       : 13
   }, [active])
 
+  React.useEffect(() => {
+    if (!isHandEnabled) {
+      translateX.value = withSpring(0)
+      translateY.value = withSpring(0)
+    }
+  }, [isHandEnabled])
+
   return {
     panGestureEvent,
     shadowStyle,
     rStyle,
+    userPlay,
+    isHandEnabled,
   }
 }
 

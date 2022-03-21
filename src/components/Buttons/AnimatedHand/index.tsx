@@ -2,8 +2,6 @@ import React from 'react'
 import { ImageProps, StyleSheet } from 'react-native'
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import Animated from 'react-native-reanimated'
-import { GameMoves } from '../../../lib/constants'
-import { useAppSelector } from '../../../store/hooks'
 import useHandAnimation from './animations/useHandAnimation'
 
 interface AnimatedHandInterface extends ImageProps {
@@ -15,10 +13,11 @@ const SIZE = 130.0
 
 const AnimatedHand = (props: AnimatedHandInterface) => {
   const { onSwipe, move, ...imageProps } = props
-  const { userPlay } = useAppSelector((state) => state.game)
-  const { panGestureEvent, shadowStyle, rStyle } = useHandAnimation(onSwipe)
-
-  const isHandEnabled = userPlay === GameMoves.EMPTY || userPlay === move
+  const { panGestureEvent, shadowStyle, rStyle, isHandEnabled } =
+    useHandAnimation({
+      onSwipe,
+      move,
+    })
 
   return (
     <PanGestureHandler enabled={isHandEnabled} onGestureEvent={panGestureEvent}>
