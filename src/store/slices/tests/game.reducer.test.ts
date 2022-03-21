@@ -11,6 +11,7 @@ import gameSlice, {
   INITIAL_GAME_STATE,
   setUserPlay,
   setUsername,
+  toggleHelper,
 } from '../game.reducer'
 
 describe('Game Slice', () => {
@@ -33,6 +34,7 @@ describe('Game Slice', () => {
           comp: 1,
         },
         round: 1,
+        helper: false,
       }
       const actualResult = gameSlice(INITIAL_GAME_STATE, action)
       expect(actualResult).toEqual(expectedResult)
@@ -58,6 +60,7 @@ describe('Game Slice', () => {
           comp: 1,
         },
         round: 1,
+        helper: false,
       }
       const actualResult = gameSlice(INITIAL_GAME_STATE, action)
       expect(actualResult).toEqual(expectedResult)
@@ -81,6 +84,7 @@ describe('Game Slice', () => {
           comp: 2,
         },
         round: 5,
+        helper: false,
       }
       const action = resetGame()
       const actualResult = gameSlice(currentState, action)
@@ -105,6 +109,7 @@ describe('Game Slice', () => {
           comp: 2,
         },
         round: 3,
+        helper: false,
       }
 
       const action = userWins()
@@ -136,6 +141,7 @@ describe('Game Slice', () => {
           comp: 0,
         },
         round: 5,
+        helper: false,
       }
 
       const action = compWins()
@@ -166,6 +172,7 @@ describe('Game Slice', () => {
           comp: 1,
         },
         round: 2,
+        helper: false,
       }
 
       const action = draw()
@@ -196,6 +203,7 @@ describe('Game Slice', () => {
           comp: 1,
         },
         round: 3,
+        helper: false,
       }
       const userPlay = GameMoves.PAPER
       const action = playNewGame(userPlay)
@@ -229,6 +237,53 @@ describe('Game Slice', () => {
           comp: 1,
         },
         round: 1,
+        helper: false,
+      }
+      expect(expectedResult).toStrictEqual(actualResult)
+    })
+  })
+  describe('toggleHelper', () => {
+    it('should set helper true', () => {
+      const action = toggleHelper(true)
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      const expectedResult: GameState = {
+        userPlay: GameMoves.EMPTY,
+        compPlay: GameMoves.EMPTY,
+        username: 'you',
+        score: {
+          user: 0,
+          comp: 0,
+        },
+        result: '',
+        moveVisible: false,
+        resultBg: {
+          user: 1,
+          comp: 1,
+        },
+        round: 1,
+        helper: true,
+      }
+      expect(expectedResult).toStrictEqual(actualResult)
+    })
+    it('should set helper false', () => {
+      const action = toggleHelper(false)
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      const expectedResult: GameState = {
+        userPlay: GameMoves.EMPTY,
+        compPlay: GameMoves.EMPTY,
+        username: 'you',
+        score: {
+          user: 0,
+          comp: 0,
+        },
+        result: '',
+        moveVisible: false,
+        resultBg: {
+          user: 1,
+          comp: 1,
+        },
+        round: 1,
+        helper: false,
       }
       expect(expectedResult).toStrictEqual(actualResult)
     })

@@ -10,6 +10,7 @@ import {
   setUserPlay,
   setVisible,
   playNewGame,
+  toggleHelper,
 } from '../store/slices/game.reducer'
 import getPlayerMoveIcon from '../utils/imageDictionary'
 import { GameMoves, GameResults } from '../lib/constants'
@@ -41,6 +42,8 @@ const useRockPaperScissors = () => {
   ]
 
   const onChallenge = async () => {
+    await dispatch(toggleHelper(false))
+
     if (userPlay !== GameMoves.EMPTY && compPlay !== GameMoves.EMPTY) {
       const tempUser = userPlay
       await dispatch(clearMove())

@@ -16,6 +16,7 @@ export type GameState = {
   round: number
   moveVisible: boolean
   username: string
+  helper: boolean
 }
 
 export const INITIAL_GAME_STATE: GameState = {
@@ -33,12 +34,16 @@ export const INITIAL_GAME_STATE: GameState = {
     comp: DefaultGameValues.SCORE,
   },
   moveVisible: false,
+  helper: false,
 }
 
 const gameSlice = createSlice({
   name: 'game',
   initialState: INITIAL_GAME_STATE,
   reducers: {
+    toggleHelper: (state, action: PayloadAction<boolean>) => {
+      state.helper = action.payload
+    },
     setUsername: (state, action: PayloadAction<string>) => {
       state.username = action.payload
     },
@@ -116,6 +121,7 @@ export const {
   userWins,
   compWins,
   clearMove,
+  toggleHelper,
   setUsername,
   draw,
   setCompPlay,

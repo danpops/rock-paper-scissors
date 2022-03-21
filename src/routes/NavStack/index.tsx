@@ -8,15 +8,34 @@ import Play from '../../screens/Play'
 import { NavStackParamsType } from '../types/route.type'
 import Options from '../../screens/Options'
 import useDesign from '../../hooks/useDesign'
-import { StatusBar } from 'react-native'
+import { Button, StatusBar } from 'react-native'
 import HeaderBack from '../../components/Buttons/HeaderBack'
 import { HeaderBackButtonProps } from '@react-navigation/native-stack/lib/typescript/src/types'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { clearMove, toggleHelper } from '../../store/slices/game.reducer'
 
 const Stack = createNativeStackNavigator<NavStackParamsType>()
 
 const HeaderLeftPlay = (props: HeaderBackButtonProps) => (
   <HeaderBack {...props} />
 )
+
+const HeaderRightHelp = () => {
+  const dispatch = useAppDispatch()
+  const { helper, moveVisible } = useAppSelector((state) => state.game)
+  const { color } = useDesign()
+
+  const onPress = () =>
+    moveVisible ? dispatch(clearMove()) : dispatch(toggleHelper(!helper))
+
+  return (
+    <Button
+      onPress={onPress}
+      title={moveVisible ? 'close' : 'help'}
+      color={color}
+    />
+  )
+}
 
 const NavStack = () => {
   const { color } = useDesign()
@@ -40,6 +59,7 @@ const NavStack = () => {
             headerLeft: HeaderLeftPlay,
             headerShown: true,
             headerTitle: '',
+            headerRight: HeaderRightHelp,
           }}
         />
         <Stack.Screen

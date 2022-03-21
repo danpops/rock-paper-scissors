@@ -14,6 +14,8 @@ import {
 } from 'react-native-reanimated'
 import useDesign from '../../../../hooks/useDesign'
 import useRockPaperScissors from '../../../../hooks/useRockPaperScissors'
+import { useAppDispatch } from '../../../../store/hooks'
+import { toggleHelper } from '../../../../store/slices/game.reducer'
 
 type ContextType = {
   translateX: number
@@ -24,8 +26,11 @@ const { height } = Dimensions.get('window')
 const TEN_PERCENT_HEIGHT = height * 0.1
 
 const useHandAnimation = (onSwipe: () => void) => {
+  const dispatch = useAppDispatch()
   const { onChallenge } = useRockPaperScissors()
   const { glowColor } = useDesign()
+
+  const turnOffHelper = () => dispatch(toggleHelper(false))
 
   const [active, setActive] = React.useState(false)
 
@@ -44,6 +49,7 @@ const useHandAnimation = (onSwipe: () => void) => {
       context.translateY = translateY.value
     },
     onActive: (event, context) => {
+      runOnJS(turnOffHelper)()
       runOnJS(onSwipe)()
       if (distance > TEN_PERCENT_HEIGHT) {
         runOnJS(setActive)(true)
