@@ -1,5 +1,5 @@
 # RockPaperScissors
-This is a very minimalistic React Native Rock Paper Scissors app, made with TypeScript, redux-toolkit, and React Native Reanimated 2.
+This is a minimalistic React Native Rock Paper Scissors app, made with TypeScript, redux-toolkit, and React Native Reanimated 2.
 
 ### Download 
 - [App Store (iOS)](https://apps.apple.com/ca/app/rock-paper-scissors-2022/id1615229958)
