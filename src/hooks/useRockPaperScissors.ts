@@ -60,6 +60,13 @@ const useRockPaperScissors = () => {
     if (result === GameResults.PLAYER_1_WIN) dispatch(userWins())
     else if (result === GameResults.PLAYER_2_WIN) dispatch(compWins())
     else dispatch(draw())
+
+    const timeout = setTimeout(() => {
+      dispatch(setVisible(false))
+      dispatch(clearMove())
+    }, 4000)
+
+    return () => clearTimeout(timeout)
   }
 
   return { onChallenge, moveOptions }

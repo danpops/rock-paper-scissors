@@ -13,6 +13,7 @@ import HeaderBack from '../../components/Buttons/HeaderBack'
 import { HeaderBackButtonProps } from '@react-navigation/native-stack/lib/typescript/src/types'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { clearMove, toggleHelper } from '../../store/slices/game.reducer'
+import { AppTitles } from '../../lib/titles'
 
 const Stack = createNativeStackNavigator<NavStackParamsType>()
 
@@ -23,7 +24,10 @@ const HeaderLeftPlay = (props: HeaderBackButtonProps) => (
 const HeaderRightHelp = () => {
   const dispatch = useAppDispatch()
   const { helper, moveVisible } = useAppSelector((state) => state.game)
-  const { color } = useDesign()
+  const { color, t } = useDesign()
+
+  const closeTitle = t(AppTitles.CLOSE_BUTTON)
+  const helpTitle = t(AppTitles.HELP_BUTTON)
 
   const onPress = () =>
     moveVisible ? dispatch(clearMove()) : dispatch(toggleHelper(!helper))
@@ -31,7 +35,7 @@ const HeaderRightHelp = () => {
   return (
     <Button
       onPress={onPress}
-      title={moveVisible ? 'close' : 'help'}
+      title={moveVisible ? closeTitle : helpTitle}
       color={color}
     />
   )

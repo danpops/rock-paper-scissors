@@ -12,6 +12,9 @@ export enum AppTitles {
   RESULT_WIN = 'you win!',
   RESULT_LOSE = 'you lose!',
   RESULT_DRAW = 'tie game.',
+  HELPER = 'swipe',
+  HELP_BUTTON = 'help',
+  CLOSE_BUTTON = 'close',
 
   // Options
   USERNAME_PLACEHOLDER = 'username...',

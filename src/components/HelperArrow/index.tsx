@@ -2,12 +2,15 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import Animated, { FadeOut } from 'react-native-reanimated'
 import useDesign from '../../hooks/useDesign'
+import { AppTitles } from '../../lib/titles'
 import { textStyles } from '../RPSText/styles'
 import useHelperArrowAnimation from './animations/useHelperArrowAnimation'
 
 const HelperArrow = () => {
-  const { color } = useDesign()
+  const { color, t } = useDesign()
   const { arrowContainerStyle, arrowStyle, helper } = useHelperArrowAnimation()
+
+  const title = t(AppTitles.HELPER)
 
   return (
     <>
@@ -21,7 +24,7 @@ const HelperArrow = () => {
             source={require('../../assets/arrow.png')}
           />
           <Animated.Text style={[textStyles.small, styles.text, { color }]}>
-            swipe
+            {title}
           </Animated.Text>
         </Animated.View>
       )}
