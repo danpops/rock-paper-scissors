@@ -8,6 +8,10 @@ import { HeaderBackButtonProps } from '@react-navigation/native-stack/lib/typesc
 import { noop } from '../../../lib/constants'
 import useDesign from '../../../hooks/useDesign'
 
+export const HeaderLeftPlay = (props: HeaderBackButtonProps) => (
+  <HeaderBack {...props} />
+)
+
 const HeaderBack = (props: HeaderBackButtonProps) => {
   const { goBack } = useNavigation()
   const { t } = useDesign()
@@ -46,5 +50,3 @@ const HeaderBack = (props: HeaderBackButtonProps) => {
 
   return <HeaderBackButton {...props} onPress={backOnPress} />
 }
-
-export default HeaderBack
