@@ -1,3 +1,4 @@
+import React from 'react'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { getComputerMove } from '../utils/getComputerMove'
 import { rockPaperScissorsCheck } from '../utils/rockPaperScissorsCheck'
@@ -17,7 +18,9 @@ import { GameMoves, GameResults } from '../lib/constants'
 
 const useRockPaperScissors = () => {
   const dispatch = useAppDispatch()
-  const { compPlay, userPlay } = useAppSelector((state) => state.game)
+  const { compPlay, userPlay, moveVisible } = useAppSelector(
+    (state) => state.game,
+  )
 
   const onSelectRock = () => dispatch(playNewGame(GameMoves.ROCK))
   const onSelectPaper = () => dispatch(playNewGame(GameMoves.PAPER))
@@ -60,14 +63,17 @@ const useRockPaperScissors = () => {
     if (result === GameResults.PLAYER_1_WIN) dispatch(userWins())
     else if (result === GameResults.PLAYER_2_WIN) dispatch(compWins())
     else dispatch(draw())
-
-    const timeout = setTimeout(() => {
-      dispatch(setVisible(false))
-      dispatch(clearMove())
-    }, 4000)
-
-    return () => clearTimeout(timeout)
   }
+
+  React.useEffect(() => {
+    if (moveVisible) {
+      const timeout = setTimeout(() => {
+        dispatch(clearMove())
+      }, 4000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [moveVisible])
 
   return { onChallenge, moveOptions }
 }
