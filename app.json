@@ -2,7 +2,7 @@
   "expo": {
     "name": "Rock Paper Scissors",
     "slug": "rockpaperscissors",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "splash": {
@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.danpops.rockpaperscissors",
-      "buildNumber": "1.0.7"
+      "buildNumber": "1.0.8"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +27,9 @@
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js"
     }
   }
 }

@@ -5,10 +5,18 @@ import useDesign from '../../hooks/useDesign'
 import { AppTitles } from '../../lib/titles'
 import { textStyles } from '../RPSText/styles'
 import useHelperArrowAnimation from './animations/useHelperArrowAnimation'
+import Arrow from '../../assets/arrow.svg'
 
 const HelperArrow = () => {
   const { color, t } = useDesign()
   const { arrowContainerStyle, arrowStyle, helper } = useHelperArrowAnimation()
+
+  const arrowProps = {
+    width: 70,
+    height: 50,
+    fill: color,
+    style: [styles.arrowIcon],
+  }
 
   const title = t(AppTitles.HELPER)
 
@@ -19,10 +27,9 @@ const HelperArrow = () => {
           exiting={FadeOut}
           style={[styles.arrowContainer, arrowContainerStyle]}
         >
-          <Animated.Image
-            style={[styles.arrowImage, arrowStyle]}
-            source={require('../../assets/arrow.png')}
-          />
+          <Animated.View style={arrowStyle}>
+            <Arrow {...arrowProps} />
+          </Animated.View>
           <Animated.Text style={[textStyles.small, styles.text, { color }]}>
             {title}
           </Animated.Text>
@@ -33,10 +40,11 @@ const HelperArrow = () => {
 }
 
 const styles = StyleSheet.create({
-  arrowImage: {
+  arrowIcon: {
     width: 60,
     height: 60,
     zIndex: 3,
+    transform: [{ rotate: '90deg' }],
   },
   arrowContainer: {
     justifyContent: 'center',
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 10,
-    opacity: 0.1,
+    opacity: 0.3,
   },
 })
 
