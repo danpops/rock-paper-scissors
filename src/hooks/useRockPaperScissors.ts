@@ -16,29 +16,33 @@ import {
 import getPlayerMoveIcon from '../utils/imageDictionary'
 import { GameMoves, GameResults } from '../lib/constants'
 
+const FOUR_SECOND_TIMEOUT = 4000
+
 const useRockPaperScissors = () => {
   const dispatch = useAppDispatch()
   const { compPlay, userPlay, moveVisible } = useAppSelector(
     (state) => state.game,
   )
 
-  const onSelectRock = () => dispatch(playNewGame(GameMoves.ROCK))
-  const onSelectPaper = () => dispatch(playNewGame(GameMoves.PAPER))
-  const onSelectScissors = () => dispatch(playNewGame(GameMoves.SCISSORS))
+  const OnSwipe = {
+    ROCK: () => dispatch(playNewGame(GameMoves.ROCK)),
+    PAPER: () => dispatch(playNewGame(GameMoves.PAPER)),
+    SCISSORS: () => dispatch(playNewGame(GameMoves.SCISSORS)),
+  }
 
   const moveOptions = [
     {
-      onSwipe: onSelectRock,
+      onSwipe: OnSwipe.ROCK,
       source: getPlayerMoveIcon(GameMoves.ROCK),
       move: GameMoves.ROCK,
     },
     {
-      onSwipe: onSelectPaper,
+      onSwipe: OnSwipe.PAPER,
       source: getPlayerMoveIcon(GameMoves.PAPER),
       move: GameMoves.PAPER,
     },
     {
-      onSwipe: onSelectScissors,
+      onSwipe: OnSwipe.SCISSORS,
       source: getPlayerMoveIcon(GameMoves.SCISSORS),
       move: GameMoves.SCISSORS,
     },
@@ -60,16 +64,24 @@ const useRockPaperScissors = () => {
 
     dispatch(setVisible(true))
 
-    if (result === GameResults.PLAYER_1_WIN) dispatch(userWins())
-    else if (result === GameResults.PLAYER_2_WIN) dispatch(compWins())
-    else dispatch(draw())
+    switch (result) {
+      case GameResults.PLAYER_1_WIN:
+        dispatch(userWins())
+        return
+      case GameResults.PLAYER_2_WIN:
+        dispatch(compWins())
+        return
+      default:
+        dispatch(draw())
+        return
+    }
   }
 
   React.useEffect(() => {
     if (moveVisible) {
       const timeout = setTimeout(() => {
         dispatch(clearMove())
-      }, 4000)
+      }, FOUR_SECOND_TIMEOUT)
 
       return () => clearTimeout(timeout)
     }
