@@ -1,8 +1,8 @@
-export const isRock = (play: string) => play === GameMoves.ROCK
-export const isPaper = (play: string) => play === GameMoves.PAPER
-export const isScissors = (play: string) => play === GameMoves.SCISSORS
+export const isRock = (play: string) => play === GameMoves.ROCK;
+export const isPaper = (play: string) => play === GameMoves.PAPER;
+export const isScissors = (play: string) => play === GameMoves.SCISSORS;
 
-export const noop = () => null
+export const noop = () => null;
 
 export enum DefaultGameValues {
   GREEN_BG = 0,
@@ -30,4 +30,4 @@ export const VALID_INPUTS = [
   GameMoves.ROCK,
   GameMoves.PAPER,
   GameMoves.SCISSORS,
-]
+];

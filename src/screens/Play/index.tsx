@@ -1,21 +1,21 @@
-import React from 'react'
-import GameResult from '../../components/GameResult'
-import SelectMove from '../../components/SelectMove'
-import useDesign from '../../hooks/useDesign'
-import { StyleSheet, View } from 'react-native'
-import HelperArrow from '../../components/HelperArrow'
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import GameResult from '../../components/GameResult';
+import HelperArrow from '../../components/HelperArrow';
+import SelectMove from '../../components/SelectMove';
+import {useDesign} from '../../hooks';
 
 const Play = () => {
-  const { backgroundColor } = useDesign()
+  const {backgroundColor} = useDesign();
 
   return (
-    <View style={[styles.container, { backgroundColor }]}>
+    <View style={[styles.container, {backgroundColor}]}>
       <GameResult />
       <HelperArrow />
       <SelectMove />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
   },
-})
+});
 
-export default Play
+export default Play;

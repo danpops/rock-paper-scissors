@@ -11,4 +11,4 @@ export const colors = {
   error: '#C84D4F',
   success: '#4EC85B',
   lightGray: '#F8F8F8',
-}
+};

@@ -1,2 +1,2 @@
 export const getRandomNumber = (limit: number) =>
-  Math.floor(Math.random() * limit)
+  Math.floor(Math.random() * limit);

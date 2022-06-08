@@ -1,31 +1,31 @@
-import React from 'react'
-import { Pressable, StyleSheet } from 'react-native'
-import Animated, { BounceIn, BounceOut } from 'react-native-reanimated'
-import { colors } from '../../../lib/colors'
-import { GameMoves } from '../../../lib/constants'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { clearMove } from '../../../store/slices/game.reducer'
-import getPlayerMoveIcon from '../../../utils/imageDictionary'
-import usePlayerMoveIconAnimation from '../animations/usePlayerMoveIconAnimation'
+import React from 'react';
+import {Pressable, StyleSheet} from 'react-native';
+import Animated, {BounceIn, BounceOut} from 'react-native-reanimated';
+import {colors} from '../../../lib/colors';
+import {GameMoves} from '../../../lib/constants';
+import {useAppDispatch, useAppSelector} from '../../../store/hooks';
+import {clearMove} from '../../../store/slices/game.reducer';
+import getPlayerMoveIcon from '../../../utils/imageDictionary';
+import usePlayerMoveIconAnimation from '../animations/usePlayerMoveIconAnimation';
 
 type MoveIconProps = {
-  playerSelection: string
-  shared: number
-  flipped: boolean
-}
+  playerSelection: string;
+  shared: number;
+  flipped: boolean;
+};
 
 const PlayerMoveIcon = ({
   playerSelection,
   shared = 1,
   flipped = false,
 }: MoveIconProps) => {
-  const { userPlay, compPlay } = useAppSelector((state) => state.game)
-  const { backgroundStyle } = usePlayerMoveIconAnimation(shared)
-  const dispatch = useAppDispatch()
-  const showMove = userPlay !== GameMoves.EMPTY && compPlay !== GameMoves.EMPTY
-  const icon = getPlayerMoveIcon(playerSelection)
+  const {userPlay, compPlay} = useAppSelector(state => state.game);
+  const {backgroundStyle} = usePlayerMoveIconAnimation(shared);
+  const dispatch = useAppDispatch();
+  const showMove = userPlay !== GameMoves.EMPTY && compPlay !== GameMoves.EMPTY;
+  const icon = getPlayerMoveIcon(playerSelection);
 
-  const onClear = () => dispatch(clearMove())
+  const onClear = () => dispatch(clearMove());
 
   return (
     <Animated.View
@@ -33,8 +33,7 @@ const PlayerMoveIcon = ({
         styles.moveContainer,
         backgroundStyle,
         flipped && styles.flippedImage,
-      ]}
-    >
+      ]}>
       {showMove && (
         <Pressable onPress={onClear}>
           <Animated.Image
@@ -46,8 +45,8 @@ const PlayerMoveIcon = ({
         </Pressable>
       )}
     </Animated.View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   moveContainer: {
@@ -80,8 +79,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
   },
   flippedImage: {
-    transform: [{ scaleX: -1 }],
+    transform: [{scaleX: -1}],
   },
-})
+});
 
-export default PlayerMoveIcon
+export default PlayerMoveIcon;
