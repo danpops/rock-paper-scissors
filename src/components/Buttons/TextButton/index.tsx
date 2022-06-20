@@ -1,35 +1,29 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import useDesign from '../../../hooks/useDesign'
-import RPSText from '../../RPSText'
+import React from 'react';
+import {Pressable, StyleSheet} from 'react-native';
+import useDesign from '../../../hooks/useDesign';
+import RPSText from '../../RPSText';
 
-interface TouchableProps {
-  onPress: () => void
-  title?: string
-  disabled?: boolean
-  color?: string
-  style?: object
+interface PressableProps {
+  onPress: () => void;
+  title?: string;
+  color?: string;
+  style?: object;
 }
 
-const TextButton = (props: TouchableProps) => {
-  const { color } = useDesign()
-  const { onPress, title, disabled = false, style = {} } = props
+const TextButton = (props: PressableProps) => {
+  const {color} = useDesign();
+  const {onPress, title, style = {}} = props;
   return (
-    <TouchableOpacity
-      style={[styles.container, style]}
-      onPress={onPress}
-      disabled={disabled}
-    >
+    <Pressable style={[styles.container, style]} onPress={onPress}>
       <RPSText text={title} heading={7} color={color} />
-    </TouchableOpacity>
-  )
-}
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
   },
-})
+});
 
-export default TextButton
+export default TextButton;

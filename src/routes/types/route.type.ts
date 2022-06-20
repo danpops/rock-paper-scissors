@@ -1,9 +1,9 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type NavStackParamsType = {
-  Menu: undefined
-  Play: undefined
-  Options: undefined
-}
+  Menu: undefined;
+  Play: undefined;
+  Options: undefined;
+};
 
-export type NavStackProps = NativeStackScreenProps<NavStackParamsType>
+export type NavStackProps = NativeStackScreenProps<NavStackParamsType>;

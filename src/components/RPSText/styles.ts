@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { colors } from '../../lib/colors'
+import {StyleSheet} from 'react-native';
+import {colors} from '../../lib/colors';
 
 export const getStyle = (styleNum?: number) => {
   return {
@@ -10,8 +10,8 @@ export const getStyle = (styleNum?: number) => {
     5: textStyles.h5,
     6: textStyles.h6,
     7: textStyles.small,
-  }[styleNum || 0]
-}
+  }[styleNum || 0];
+};
 
 export const textStyles = StyleSheet.create({
   basic: {
@@ -20,7 +20,7 @@ export const textStyles = StyleSheet.create({
     color: colors.black,
   },
   h1: {
-    fontSize: 80,
+    fontSize: 70,
     fontWeight: '100',
     marginBottom: 20,
     padding: 5,
@@ -49,4 +49,4 @@ export const textStyles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '400',
   },
-})
+});

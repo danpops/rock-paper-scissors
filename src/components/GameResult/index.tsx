@@ -1,17 +1,17 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import Animated from 'react-native-reanimated'
-import useDesign from '../../hooks/useDesign'
-import RPSText from '../RPSText'
-import { textStyles } from '../RPSText/styles'
-import useGameResultAnimation from './animations/useGameResultAnimation'
-import PlayerMoveIcon from './components/PlayerMoveIcon'
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import Animated from 'react-native-reanimated';
+import useDesign from '../../hooks/useDesign';
+import RPSText from '../RPSText';
+import {textStyles} from '../RPSText/styles';
+import useGameResultAnimation from './animations/useGameResultAnimation';
+import PlayerMoveIcon from './components/PlayerMoveIcon';
 
 const GameResult = () => {
-  const { color, backgroundColor } = useDesign()
+  const {color, backgroundColor} = useDesign();
 
-  const { rStyle, rTextStyle, moveSelections, resultTitle } =
-    useGameResultAnimation()
+  const {rStyle, rTextStyle, moveSelections, resultTitle} =
+    useGameResultAnimation();
 
   return (
     <>
@@ -22,8 +22,7 @@ const GameResult = () => {
           {
             backgroundColor,
           },
-        ]}
-      >
+        ]}>
         <Animated.Text
           style={[
             textStyles.h2,
@@ -31,8 +30,7 @@ const GameResult = () => {
             {
               color,
             },
-          ]}
-        >
+          ]}>
           {resultTitle}
         </Animated.Text>
         <View style={styles.row}>
@@ -52,8 +50,8 @@ const GameResult = () => {
         </View>
       </Animated.View>
     </>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   column: {
@@ -70,6 +68,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
   },
-})
+});
 
-export default GameResult
+export default GameResult;

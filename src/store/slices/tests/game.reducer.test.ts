@@ -1,5 +1,5 @@
-import { GameMoves } from '../../../lib/constants'
-import { AppTitles } from '../../../lib/titles'
+import {GameMoves} from '../../../lib/constants';
+import {AppTitles} from '../../../lib/titles';
 import gameSlice, {
   setCompPlay,
   resetGame,
@@ -12,13 +12,13 @@ import gameSlice, {
   setUserPlay,
   setUsername,
   toggleHelper,
-} from '../game.reducer'
+} from '../game.reducer';
 
 describe('Game Slice', () => {
   describe('setCompPlay', () => {
     it('should update computer play', () => {
-      const computerPlay = GameMoves.ROCK
-      const action = setCompPlay(computerPlay)
+      const computerPlay = GameMoves.ROCK;
+      const action = setCompPlay(computerPlay);
       const expectedResult: GameState = {
         userPlay: GameMoves.EMPTY,
         compPlay: GameMoves.ROCK,
@@ -35,16 +35,16 @@ describe('Game Slice', () => {
         },
         round: 1,
         helper: false,
-      }
-      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
+      };
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action);
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 
   describe('setUserPlay', () => {
     it('should update user play', () => {
-      const userPlay = GameMoves.PAPER
-      const action = setUserPlay(userPlay)
+      const userPlay = GameMoves.PAPER;
+      const action = setUserPlay(userPlay);
       const expectedResult: GameState = {
         userPlay: GameMoves.PAPER,
         compPlay: GameMoves.EMPTY,
@@ -61,11 +61,11 @@ describe('Game Slice', () => {
         },
         round: 1,
         helper: false,
-      }
-      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
+      };
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action);
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 
   describe('resetGame', () => {
     it('should reset game', () => {
@@ -85,12 +85,12 @@ describe('Game Slice', () => {
         },
         round: 5,
         helper: false,
-      }
-      const action = resetGame()
-      const actualResult = gameSlice(currentState, action)
-      expect(actualResult).toEqual(INITIAL_GAME_STATE)
-    })
-  })
+      };
+      const action = resetGame();
+      const actualResult = gameSlice(currentState, action);
+      expect(actualResult).toEqual(INITIAL_GAME_STATE);
+    });
+  });
 
   describe('userWins', () => {
     it('should set user as round winner', () => {
@@ -110,19 +110,19 @@ describe('Game Slice', () => {
         },
         round: 3,
         helper: false,
-      }
+      };
 
-      const action = userWins()
+      const action = userWins();
       const expectedResult = {
         ...currentState,
 
-        score: { user: 3, comp: 4 },
+        score: {user: 3, comp: 4},
         round: 4,
-      }
-      const actualResult = gameSlice(currentState, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
+      };
+      const actualResult = gameSlice(currentState, action);
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 
   describe('compWins', () => {
     it('should set computer as round winner', () => {
@@ -142,18 +142,18 @@ describe('Game Slice', () => {
         },
         round: 5,
         helper: false,
-      }
+      };
 
-      const action = compWins()
+      const action = compWins();
       const expectedResult = {
         ...currentState,
-        score: { user: 3, comp: 5 },
+        score: {user: 3, comp: 5},
         round: 6,
-      }
-      const actualResult = gameSlice(currentState, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
+      };
+      const actualResult = gameSlice(currentState, action);
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 
   describe('draw', () => {
     it('should set round as draw', () => {
@@ -173,18 +173,18 @@ describe('Game Slice', () => {
         },
         round: 2,
         helper: false,
-      }
+      };
 
-      const action = draw()
+      const action = draw();
       const expectedResult = {
         ...currentState,
-        score: { user: 2, comp: 2 },
+        score: {user: 2, comp: 2},
         round: 3,
-      }
-      const actualResult = gameSlice(currentState, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
+      };
+      const actualResult = gameSlice(currentState, action);
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 
   describe('playNewGame', () => {
     it('should set new game', () => {
@@ -204,24 +204,24 @@ describe('Game Slice', () => {
         },
         round: 3,
         helper: false,
-      }
-      const userPlay = GameMoves.PAPER
-      const action = playNewGame(userPlay)
+      };
+      const userPlay = GameMoves.PAPER;
+      const action = playNewGame(userPlay);
       const expectedResult = {
         ...currentState,
         userPlay,
         compPlay: GameMoves.EMPTY,
-      }
-      const actualResult = gameSlice(currentState, action)
-      expect(actualResult).toEqual(expectedResult)
-    })
-  })
+      };
+      const actualResult = gameSlice(currentState, action);
+      expect(actualResult).toEqual(expectedResult);
+    });
+  });
 
   describe('setUsername', () => {
     it('should update username', () => {
-      const testUsername = 'testing'
-      const action = setUsername(testUsername)
-      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      const testUsername = 'testing';
+      const action = setUsername(testUsername);
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action);
       const expectedResult: GameState = {
         userPlay: GameMoves.EMPTY,
         compPlay: GameMoves.EMPTY,
@@ -238,14 +238,14 @@ describe('Game Slice', () => {
         },
         round: 1,
         helper: false,
-      }
-      expect(expectedResult).toStrictEqual(actualResult)
-    })
-  })
+      };
+      expect(expectedResult).toStrictEqual(actualResult);
+    });
+  });
   describe('toggleHelper', () => {
     it('should set helper true', () => {
-      const action = toggleHelper(true)
-      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      const action = toggleHelper(true);
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action);
       const expectedResult: GameState = {
         userPlay: GameMoves.EMPTY,
         compPlay: GameMoves.EMPTY,
@@ -262,12 +262,12 @@ describe('Game Slice', () => {
         },
         round: 1,
         helper: true,
-      }
-      expect(expectedResult).toStrictEqual(actualResult)
-    })
+      };
+      expect(expectedResult).toStrictEqual(actualResult);
+    });
     it('should set helper false', () => {
-      const action = toggleHelper(false)
-      const actualResult = gameSlice(INITIAL_GAME_STATE, action)
+      const action = toggleHelper(false);
+      const actualResult = gameSlice(INITIAL_GAME_STATE, action);
       const expectedResult: GameState = {
         userPlay: GameMoves.EMPTY,
         compPlay: GameMoves.EMPTY,
@@ -284,8 +284,8 @@ describe('Game Slice', () => {
         },
         round: 1,
         helper: false,
-      }
-      expect(expectedResult).toStrictEqual(actualResult)
-    })
-  })
-})
+      };
+      expect(expectedResult).toStrictEqual(actualResult);
+    });
+  });
+});

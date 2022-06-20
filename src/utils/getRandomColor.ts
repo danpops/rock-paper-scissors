@@ -1,5 +1,5 @@
-import { colors } from '../lib/colors'
-import { getRandomNumber } from './getRandomNumber'
+import {colors} from '../lib/colors';
+import {getRandomNumber} from './getRandomNumber';
 
 export const getRandomColor = () => {
   return (
@@ -17,5 +17,5 @@ export const getRandomColor = () => {
       10: colors.white,
       11: colors.yellow,
     }[getRandomNumber(12)] || colors.black
-  )
-}
+  );
+};

@@ -4,7 +4,7 @@ const getPlayerMoveIcon = (play: string) => {
     P: require('../assets/paper.png'),
     S: require('../assets/scissors.png'),
     '?': null,
-  }[play || '?']
-}
+  }[play || '?'];
+};
 
-export default getPlayerMoveIcon
+export default getPlayerMoveIcon;
